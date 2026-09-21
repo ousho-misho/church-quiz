@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>مسابقة درس الكتاب</title>
-  <!-- استدعاء خط Cairo العربي الحديث -->
+  <!-- استدعاء خط Cairo -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- مكتبة توليد الـ QR Code برمجياً أوفلاين بدون إنترنت -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   
   <style>
     * { box-sizing: border-box; }
@@ -29,41 +31,27 @@
       position: relative; 
     }
     
-    /* تنسيق الهيدر واللوجو */
     .header-box {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 15px;
+      gap: 12px;
       margin-top: 10px;
       margin-bottom: 20px;
       border-bottom: 2px dashed #e2e8f0;
       padding-bottom: 15px;
     }
     .header-logo {
-      width: 75px;
-      height: 75px;
+      width: 70px;
+      height: 70px;
       border-radius: 50%;
       object-fit: cover;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      border: 2px solid #3498db;
     }
-    .header-titles {
-      text-align: center;
-    }
-    h2 { 
-      color: #1e3a8a; 
-      font-weight: 700;
-      font-size: 22px;
-      margin: 0 0 5px 0;
-    }
-    h4 {
-      color: #0284c7;
-      font-weight: 600;
-      font-size: 14px;
-      margin: 0;
-    }
+    .header-titles { text-align: center; }
+    h2 { color: #1e3a8a; font-weight: 700; font-size: 20px; margin: 0 0 4px 0; }
+    h4 { color: #0284c7; font-weight: 600; font-size: 13px; margin: 0; }
     
-    /* شريط التايمر */
     .timer-box { 
       position: sticky; 
       top: 10px; 
@@ -100,14 +88,8 @@
       font-size: 15px; 
       font-family: 'Cairo', sans-serif;
       outline: none;
-      transition: 0.3s;
-    }
-    input[type="text"]:focus {
-      border-color: #3498db;
-      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
     }
 
-    /* خيارات الأسئلة */
     .options-group { display: flex; flex-direction: column; gap: 8px; }
     .option-item { 
       display: flex; 
@@ -119,18 +101,8 @@
       padding: 10px 14px;
       border-radius: 8px;
       border: 1px solid #e2e8f0;
-      transition: all 0.2s ease;
     }
-    .option-item:hover {
-      border-color: #3498db;
-      background: #f0f7fc;
-    }
-    .option-item input[type="radio"] { 
-      width: 20px; 
-      height: 20px; 
-      accent-color: #3498db;
-      cursor: pointer; 
-    }
+    .option-item input[type="radio"] { width: 20px; height: 20px; accent-color: #3498db; }
 
     button { 
       width: 100%; 
@@ -144,10 +116,7 @@
       cursor: pointer; 
       font-weight: 700; 
       margin-top: 15px; 
-      box-shadow: 0 4px 12px rgba(39, 174, 96, 0.25);
-      transition: 0.3s;
     }
-    button:hover { background: #219150; }
 
     #qr-container { 
       display: none; 
@@ -158,25 +127,26 @@
       border: 2px dashed #22c55e; 
       border-radius: 12px; 
     }
-    #qrcode img { 
-      display: block; 
-      margin: 18px auto; 
-      border: 6px solid white; 
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+    #qrcode {
+      display: flex;
+      justify-content: center;
+      margin: 18px auto;
     }
-    .reset-btn { background: #3b82f6; margin-top: 15px; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25); }
+    #qrcode canvas, #qrcode img {
+      border: 6px solid white;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .reset-btn { background: #3b82f6; margin-top: 15px; }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <!-- التايمر -->
   <div class="timer-box" id="timerBox">الوقت المتبقي: <span id="timer">02:00</span></div>
 
-  <!-- الهيدر مع اللوجو والعناوين -->
   <div class="header-box">
-    <img src="https://i.ibb.co/6R59V1q/church-logo.jpg" alt="لوجو الخدمة" class="header-logo">
+    <img src="https://i.ibb.co/6R59V1q/church-logo.jpg" alt="لوجو الخدمة" class="header-logo" onerror="this.style.display='none'">
     <div class="header-titles">
       <h2>مسابقة درس الكتاب</h2>
       <h4>أسرة مارمينا والبابا كيرلس السادس لخدمة المرضى</h4>
@@ -184,7 +154,6 @@
   </div>
 
   <form id="quizForm">
-    <!-- البيانات الأساسية -->
     <div class="form-group">
       <label class="question-title">الاسم:</label>
       <input type="text" id="name" required placeholder="أدخل الاسم الثلاثي">
@@ -195,7 +164,6 @@
       <input type="text" id="stage" required placeholder="مثال: خادم / مرحلة إعدادي">
     </div>
 
-    <!-- أسئلة الاختيار من متعدد -->
     <div class="form-group">
       <label class="question-title">السؤال الأول: كم عدد أسفار العهد القديم؟</label>
       <div class="options-group">
@@ -249,7 +217,6 @@
     <button type="submit">إنهاء واستخراج الـ QR Code</button>
   </form>
 
-  <!-- نتيجة الـ QR Code -->
   <div id="qr-container">
     <h3 id="finishTitle" style="color: #27ae60; margin-top:0;">تم إنهاء المسابقة بنجاح!</h3>
     <p>يرجى إظهار الشاشة للكنترول لمسح رمز الـ QR وتسجيل إجابتك ودرجتك:</p>
@@ -259,31 +226,18 @@
 </div>
 
 <script>
-  // مصفوفة الإجابات الصحيحة (مخفية عن المستخدم)
-  const correctAnswers = {
-    q1: "٤٦",
-    q2: "المنتشل من الماء",
-    q3: "موسى",
-    q4: "جبل اراراط",
-    q5: "شاليم"
-  };
-
+  const correctAnswers = { q1: "٤٦", q2: "المنتشل من الماء", q3: "موسى", q4: "جبل اراراط", q5: "شاليم" };
   const form = document.getElementById('quizForm');
   const qrContainer = document.getElementById('qr-container');
   const timerBox = document.getElementById('timerBox');
   const timerDisplay = document.getElementById('timer');
-  
-  let timeLeft = 120; // 2 دقيقة
-  let timerInterval = null;
+  let timeLeft = 120, timerInterval = null;
 
   function startTimer() {
     timeLeft = 120;
     timerInterval = setInterval(() => {
-      let minutes = Math.floor(timeLeft / 60);
-      let seconds = timeLeft % 60;
-      seconds = seconds < 10 ? '0' + seconds : seconds;
-      timerDisplay.textContent = `0${minutes}:${seconds}`;
-
+      let minutes = Math.floor(timeLeft / 60), seconds = timeLeft % 60;
+      timerDisplay.textContent = `0${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
       if (timeLeft <= 0) {
         clearInterval(timerInterval);
         document.getElementById('finishTitle').textContent = "انتهى الوقت المحدد!";
@@ -296,40 +250,37 @@
 
   function submitQuiz() {
     clearInterval(timerInterval);
-
     const name = document.getElementById('name').value || 'بدون اسم';
     const stage = document.getElementById('stage').value || 'غير محدد';
-
     let score = 0;
     const getAns = (q) => {
-      const selected = document.querySelector(`input[name="${q}"]:checked`)?.value || 'لم يُجب';
-      if (selected === correctAnswers[q]) {
-        score++;
-      }
-      return selected;
+      const val = document.querySelector(`input[name="${q}"]:checked`)?.value || 'لم يُجب';
+      if (val === correctAnswers[q]) score++;
+      return val;
     };
 
-    const ans1 = getAns('q1');
-    const ans2 = getAns('q2');
-    const ans3 = getAns('q3');
-    const ans4 = getAns('q4');
-    const ans5 = getAns('q5');
-
-    // نص النتيجة المضمن في الـ QR Code
-    const resultText = `الاسم: ${name}\nالمرحلة: ${stage}\nالدرجة: ${score} من 5\n----------------\nس1: ${ans1}\nس2: ${ans2}\nس3: ${ans3}\nس4: ${ans4}\nس5: ${ans5}`;
+    const resultText = `الاسم: ${name}\nالمرحلة: ${stage}\nالدرجة: ${score}/5\n----------------\nس1: ${getAns('q1')}\nس2: ${getAns('q2')}\nس3: ${getAns('q3')}\nس4: ${getAns('q4')}\nس5: ${getAns('q5')}`;
 
     form.style.display = 'none';
     timerBox.style.display = 'none';
     qrContainer.style.display = 'block';
 
-    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(resultText)}`;
-    document.getElementById('qrcode').innerHTML = `<img src="${qrUrl}" alt="QR Code" width="220" height="220">`;
+    document.getElementById('qrcode').innerHTML = "";
+    
+    // التوليد البرمجي أوفلاين
+    if (typeof QRCode !== "undefined") {
+      new QRCode(document.getElementById("qrcode"), {
+        text: resultText,
+        width: 200,
+        height: 200
+      });
+    } else {
+      const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(resultText)}`;
+      document.getElementById('qrcode').innerHTML = `<img src="${qrUrl}" alt="QR Code" width="200" height="200">`;
+    }
   }
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    submitQuiz();
-  });
+  form.addEventListener('submit', (e) => { e.preventDefault(); submitQuiz(); });
 
   function resetForm() {
     form.reset();
