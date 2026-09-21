@@ -3,94 +3,246 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>اختبار خدام الكنيسة</title>
+  <title>مسابقة درس الكتاب</title>
+  <!-- استدعاء خط Cairo العربي الحديث -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  
   <style>
-    body { font-family: system-ui, sans-serif; background: #f4f6f9; padding: 20px; direction: rtl; text-align: right; }
-    .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); position: relative; }
-    h2 { color: #2c3e50; text-align: center; margin-top: 10px; }
+    * { box-sizing: border-box; }
+    body { 
+      font-family: 'Cairo', sans-serif; 
+      background: #eef2f5; 
+      margin: 0;
+      padding: 20px 10px; 
+      direction: rtl; 
+      text-align: right; 
+      color: #2c3e50;
+    }
+    .container { 
+      max-width: 600px; 
+      margin: auto; 
+      background: #ffffff; 
+      padding: 25px 20px; 
+      border-radius: 15px; 
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08); 
+      border-top: 6px solid #3498db;
+      position: relative; 
+    }
     
-    /* تصميم شريط التايمر المثبت فوق */
-    .timer-box { position: sticky; top: 10px; background: #e74c3c; color: white; padding: 10px 15px; border-radius: 8px; text-align: center; font-size: 18px; font-weight: bold; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+    /* تنسيق الهيدر واللوجو */
+    .header-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      border-bottom: 2px dashed #e2e8f0;
+      padding-bottom: 15px;
+    }
+    .header-logo {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .header-titles {
+      text-align: center;
+    }
+    h2 { 
+      color: #1e3a8a; 
+      font-weight: 700;
+      font-size: 22px;
+      margin: 0 0 5px 0;
+    }
+    h4 {
+      color: #0284c7;
+      font-weight: 600;
+      font-size: 14px;
+      margin: 0;
+    }
     
-    .form-group { margin-bottom: 20px; }
-    label { display: block; margin-bottom: 8px; font-weight: bold; }
-    input[type="text"] { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 16px; }
-    
-    .options-group { display: flex; flex-direction: column; gap: 8px; margin-top: 5px; }
-    .option-item { display: flex; align-items: center; gap: 10px; font-weight: normal; cursor: pointer; }
-    .option-item input[type="radio"] { width: 18px; height: 18px; cursor: pointer; }
+    /* شريط التايمر */
+    .timer-box { 
+      position: sticky; 
+      top: 10px; 
+      background: #e74c3c; 
+      color: white; 
+      padding: 10px 15px; 
+      border-radius: 10px; 
+      text-align: center; 
+      font-size: 18px; 
+      font-weight: 700; 
+      z-index: 100; 
+      box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3); 
+    }
 
-    button { width: 100%; background: #27ae60; color: white; border: none; padding: 12px; font-size: 16px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+    .form-group { 
+      margin-bottom: 20px; 
+      background: #f8fafc;
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+    }
+    label.question-title { 
+      display: block; 
+      margin-bottom: 10px; 
+      font-weight: 700; 
+      font-size: 15px;
+      color: #1e293b;
+    }
+    input[type="text"] { 
+      width: 100%; 
+      padding: 12px; 
+      border: 1px solid #cbd5e1; 
+      border-radius: 8px; 
+      font-size: 15px; 
+      font-family: 'Cairo', sans-serif;
+      outline: none;
+      transition: 0.3s;
+    }
+    input[type="text"]:focus {
+      border-color: #3498db;
+      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+    }
+
+    /* خيارات الأسئلة */
+    .options-group { display: flex; flex-direction: column; gap: 8px; }
+    .option-item { 
+      display: flex; 
+      align-items: center; 
+      gap: 12px; 
+      font-weight: 600; 
+      cursor: pointer; 
+      background: white;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      transition: all 0.2s ease;
+    }
+    .option-item:hover {
+      border-color: #3498db;
+      background: #f0f7fc;
+    }
+    .option-item input[type="radio"] { 
+      width: 20px; 
+      height: 20px; 
+      accent-color: #3498db;
+      cursor: pointer; 
+    }
+
+    button { 
+      width: 100%; 
+      background: #27ae60; 
+      color: white; 
+      border: none; 
+      padding: 14px; 
+      font-size: 17px; 
+      font-family: 'Cairo', sans-serif;
+      border-radius: 10px; 
+      cursor: pointer; 
+      font-weight: 700; 
+      margin-top: 15px; 
+      box-shadow: 0 4px 12px rgba(39, 174, 96, 0.25);
+      transition: 0.3s;
+    }
     button:hover { background: #219150; }
 
-    #qr-container { display: none; text-align: center; margin-top: 25px; padding: 20px; background: #eef9f1; border: 2px dashed #27ae60; border-radius: 10px; }
-    #qrcode img { display: block; margin: 15px auto; border: 5px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-    .reset-btn { background: #3498db; margin-top: 15px; }
+    #qr-container { 
+      display: none; 
+      text-align: center; 
+      margin-top: 20px; 
+      padding: 25px 15px; 
+      background: #f0fdf4; 
+      border: 2px dashed #22c55e; 
+      border-radius: 12px; 
+    }
+    #qrcode img { 
+      display: block; 
+      margin: 18px auto; 
+      border: 6px solid white; 
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+    }
+    .reset-btn { background: #3b82f6; margin-top: 15px; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25); }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <!-- شريط العد التنازلي -->
+  <!-- التايمر -->
   <div class="timer-box" id="timerBox">الوقت المتبقي: <span id="timer">02:00</span></div>
 
-  <h2>اختبار خدام الكنيسة</h2>
+  <!-- الهيدر مع اللوجو والعناوين -->
+  <div class="header-box">
+    <img src="https://i.ibb.co/6R59V1q/church-logo.jpg" alt="لوجو الخدمة" class="header-logo">
+    <div class="header-titles">
+      <h2>مسابقة درس الكتاب</h2>
+      <h4>أسرة مارمينا والبابا كيرلس السادس لخدمة المرضى</h4>
+    </div>
+  </div>
 
   <form id="quizForm">
     <!-- البيانات الأساسية -->
     <div class="form-group">
-      <label>اسم الخادم:</label>
+      <label class="question-title">الاسم:</label>
       <input type="text" id="name" required placeholder="أدخل الاسم الثلاثي">
     </div>
 
     <div class="form-group">
-      <label>اسم الأسرة / المرحلة:</label>
-      <input type="text" id="stage" required placeholder="مثال: ابتدائي / إعدادي">
+      <label class="question-title">اسم الأسرة / المرحلة:</label>
+      <input type="text" id="stage" required placeholder="مثال: خادم / مرحلة إعدادي">
     </div>
 
-    <!-- أسئلة اختيار من متعدد -->
+    <!-- أسئلة الاختيار من متعدد -->
     <div class="form-group">
-      <label>سؤال 1: كم عدد أسفار العهد الجديد؟</label>
+      <label class="question-title">السؤال الأول: كم عدد أسفار العهد القديم؟</label>
       <div class="options-group">
-        <label class="option-item"><input type="radio" name="q1" value="27 سِفر"> 27 سِفر</label>
-        <label class="option-item"><input type="radio" name="q1" value="39 سِفر"> 39 سِفر</label>
-        <label class="option-item"><input type="radio" name="q1" value="46 سِفر"> 46 سِفر</label>
+        <label class="option-item"><input type="radio" name="q1" value="٣٩"> ٣٩</label>
+        <label class="option-item"><input type="radio" name="q1" value="٤٦"> ٤٦</label>
+        <label class="option-item"><input type="radio" name="q1" value="٣٠"> ٣٠</label>
+        <label class="option-item"><input type="radio" name="q1" value="٤٠"> ٤٠</label>
       </div>
     </div>
 
     <div class="form-group">
-      <label>سؤال 2: متى تُقام القداسات الإلهية؟</label>
+      <label class="question-title">السؤال الثاني: ما معنى اسم موسى؟</label>
       <div class="options-group">
-        <label class="option-item"><input type="radio" name="q2" value="صباحاً"> صباحاً</label>
-        <label class="option-item"><input type="radio" name="q2" value="مساءً"> مساءً</label>
-        <label class="option-item"><input type="radio" name="q2" value="حسب الترتيب والطقس"> حسب الترتيب والطقس</label>
+        <label class="option-item"><input type="radio" name="q2" value="المنتشل من الماء"> المنتشل من الماء</label>
+        <label class="option-item"><input type="radio" name="q2" value="منقذ شعب اسرائيل"> منقذ شعب اسرائيل</label>
+        <label class="option-item"><input type="radio" name="q2" value="اب للأباء"> اب للأباء</label>
+        <label class="option-item"><input type="radio" name="q2" value="لم يذكر"> لم يذكر</label>
       </div>
     </div>
 
     <div class="form-group">
-      <label>سؤال 3: من هو كاتب سفر الأعمال؟</label>
+      <label class="question-title">السؤال الثالث: من هو كاتب سفر الخروج؟</label>
       <div class="options-group">
-        <label class="option-item"><input type="radio" name="q3" value="القديس لوقا"> القديس لوقا</label>
-        <label class="option-item"><input type="radio" name="q3" value="القديس يوحنا"> القديس يوحنا</label>
-        <label class="option-item"><input type="radio" name="q3" value="القديس بطرس"> القديس بطرس</label>
+        <label class="option-item"><input type="radio" name="q3" value="موسى"> موسى</label>
+        <label class="option-item"><input type="radio" name="q3" value="صموئيل"> صموئيل</label>
+        <label class="option-item"><input type="radio" name="q3" value="داود"> داود</label>
+        <label class="option-item"><input type="radio" name="q3" value="نوح"> نوح</label>
       </div>
     </div>
 
     <div class="form-group">
-      <label>سؤال 4: كم عدد الأسرار الكنسية؟</label>
+      <label class="question-title">السؤال الرابع: أين استقر فلك نوح بعد أن جفت مياه الطوفان؟</label>
       <div class="options-group">
-        <label class="option-item"><input type="radio" name="q4" value="5 أسرار"> 5 أسرار</label>
-        <label class="option-item"><input type="radio" name="q4" value="7 أسرار"> 7 أسرار</label>
-        <label class="option-item"><input type="radio" name="q4" value="12 سر"> 12 سر</label>
+        <label class="option-item"><input type="radio" name="q4" value="جبل الزيتون"> جبل الزيتون</label>
+        <label class="option-item"><input type="radio" name="q4" value="جبل سيناء"> جبل سيناء</label>
+        <label class="option-item"><input type="radio" name="q4" value="جبل نيبو"> جبل نيبو</label>
+        <label class="option-item"><input type="radio" name="q4" value="جبل اراراط"> جبل اراراط</label>
       </div>
     </div>
 
     <div class="form-group">
-      <label>سؤال 5: ما هي أول معجزة للسيد المسيح؟</label>
+      <label class="question-title">السؤال الخامس: ما اسم المدينة التي كان عليها ملشي صادق كاهن الله العلي؟</label>
       <div class="options-group">
-        <label class="option-item"><input type="radio" name="q5" value="إشباع الجموع"> إشباع الجموع</label>
-        <label class="option-item"><input type="radio" name="q5" value="عرس قانا الجليل"> عرس قانا الجليل</label>
-        <label class="option-item"><input type="radio" name="q5" value="شفاء الأعمى"> شفاء الأعمى</label>
+        <label class="option-item"><input type="radio" name="q5" value="شكيم"> شكيم</label>
+        <label class="option-item"><input type="radio" name="q5" value="حبرون"> حبرون</label>
+        <label class="option-item"><input type="radio" name="q5" value="اور كلدانيين"> اور كلدانيين</label>
+        <label class="option-item"><input type="radio" name="q5" value="شاليم"> شاليم</label>
       </div>
     </div>
 
@@ -99,23 +251,31 @@
 
   <!-- نتيجة الـ QR Code -->
   <div id="qr-container">
-    <h3 id="finishTitle" style="color: #27ae60; margin-top:0;">تم إنهاء الامتحان بنجاح!</h3>
-    <p>يرجى إظهار الشاشة للكنترول لمسح رمز الـ QR وتسجيل إجابتك:</p>
+    <h3 id="finishTitle" style="color: #27ae60; margin-top:0;">تم إنهاء المسابقة بنجاح!</h3>
+    <p>يرجى إظهار الشاشة للكنترول لمسح رمز الـ QR وتسجيل إجابتك ودرجتك:</p>
     <div id="qrcode"></div>
-    <button type="button" class="reset-btn" onclick="resetForm()">بدء اختبار جديد</button>
+    <button type="button" class="reset-btn" onclick="resetForm()">بدء مسابقة جديدة</button>
   </div>
 </div>
 
 <script>
+  // مصفوفة الإجابات الصحيحة (مخفية عن المستخدم)
+  const correctAnswers = {
+    q1: "٤٦",
+    q2: "المنتشل من الماء",
+    q3: "موسى",
+    q4: "جبل اراراط",
+    q5: "شاليم"
+  };
+
   const form = document.getElementById('quizForm');
   const qrContainer = document.getElementById('qr-container');
   const timerBox = document.getElementById('timerBox');
   const timerDisplay = document.getElementById('timer');
   
-  let timeLeft = 120; // دقيقتين بالثواني
+  let timeLeft = 120; // 2 دقيقة
   let timerInterval = null;
 
-  // تشغيل التايمر تلقائياً
   function startTimer() {
     timeLeft = 120;
     timerInterval = setInterval(() => {
@@ -128,22 +288,35 @@
         clearInterval(timerInterval);
         document.getElementById('finishTitle').textContent = "انتهى الوقت المحدد!";
         document.getElementById('finishTitle').style.color = "#e74c3c";
-        submitQuiz(); // تسليم تلقائي عند انتهاء الوقت
+        submitQuiz();
       }
       timeLeft--;
     }, 1000);
   }
 
-  // دالة تسليم الاختبار وتوليد الـ QR
   function submitQuiz() {
     clearInterval(timerInterval);
 
     const name = document.getElementById('name').value || 'بدون اسم';
     const stage = document.getElementById('stage').value || 'غير محدد';
 
-    const getAns = (q) => document.querySelector(`input[name="${q}"]:checked`)?.value || 'لم يُجب';
+    let score = 0;
+    const getAns = (q) => {
+      const selected = document.querySelector(`input[name="${q}"]:checked`)?.value || 'لم يُجب';
+      if (selected === correctAnswers[q]) {
+        score++;
+      }
+      return selected;
+    };
 
-    const resultText = `الاسم: ${name}\nالمرحلة: ${stage}\nس1: ${getAns('q1')}\nس2: ${getAns('q2')}\nس3: ${getAns('q3')}\nس4: ${getAns('q4')}\nس5: ${getAns('q5')}`;
+    const ans1 = getAns('q1');
+    const ans2 = getAns('q2');
+    const ans3 = getAns('q3');
+    const ans4 = getAns('q4');
+    const ans5 = getAns('q5');
+
+    // نص النتيجة المضمن في الـ QR Code
+    const resultText = `الاسم: ${name}\nالمرحلة: ${stage}\nالدرجة: ${score} من 5\n----------------\nس1: ${ans1}\nس2: ${ans2}\nس3: ${ans3}\nس4: ${ans4}\nس5: ${ans5}`;
 
     form.style.display = 'none';
     timerBox.style.display = 'none';
@@ -163,12 +336,11 @@
     form.style.display = 'block';
     timerBox.style.display = 'block';
     qrContainer.style.display = 'none';
-    document.getElementById('finishTitle').textContent = "تم إنهاء الامتحان بنجاح!";
+    document.getElementById('finishTitle').textContent = "تم إنهاء المسابقة بنجاح!";
     document.getElementById('finishTitle').style.color = "#27ae60";
     startTimer();
   }
 
-  // بدء التايمر عند فتح الصفحة
   startTimer();
 </script>
 
