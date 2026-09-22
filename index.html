@@ -4,6 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>مسابقة درس الكتاب</title>
+
+  <!-- دعم PWA: يسمح بإضافة الصفحة كتطبيق وتحديد الأيقونة/الألوان. لا يتطلب أي اتصال إنترنت. -->
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#3498db">
+  <link rel="icon" href="./images/church-logo.jpg">
+  <link rel="apple-touch-icon" href="./images/church-logo.jpg">
+
   <!-- مكتبة توليد الـ QR Code محليًا بالكامل بدون إنترنت -->
   <script src="./js/qrcode.min.js"></script>
 
@@ -175,6 +182,10 @@
       <h2>مسابقة درس الكتاب</h2>
       <h4>أسرة مارمينا والبابا كيرلس السادس لخدمة المرضى</h4>
     </div>
+  </div>
+
+  <div id="offlineReadyMsg" style="display:none; text-align:center; font-size:12px; color:#16a34a; font-weight:700; margin:-8px 0 16px 0;">
+    تم تجهيز المسابقة للعمل بدون إنترنت
   </div>
 
   <form id="quizForm">
@@ -360,6 +371,46 @@
   }
 
   startTimer();
+</script>
+
+<script>
+  // تسجيل الـ Service Worker لتفعيل العمل بدون إنترنت (PWA).
+  // هذا الكود منفصل تمامًا عن منطق المسابقة أعلاه ولا يؤثر عليه بأي شكل.
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      // مسار نسبي (وليس "/service-worker.js") حتى يعمل بشكل صحيح
+      // سواء كان الموقع على جذر الدومين أو داخل مسار فرعي لمشروع GitHub Pages
+      // مثل: https://username.github.io/REPO/
+      navigator.serviceWorker.register('./service-worker.js')
+        .then((registration) => {
+          const showReadyMsg = () => {
+            const msg = document.getElementById('offlineReadyMsg');
+            if (!msg) return;
+            msg.style.display = 'block';
+            setTimeout(() => { msg.style.display = 'none'; }, 4000);
+          };
+
+          // لو يوجد Service Worker يعمل بالفعل ويتحكم في الصفحة، فهذا يعني أن التخزين تم مسبقًا.
+          if (navigator.serviceWorker.controller) {
+            showReadyMsg();
+          }
+
+          // في أول مرة، ننتظر انتهاء تثبيت النسخة الجديدة لإعلام المستخدم أن التخزين اكتمل.
+          if (registration.installing) {
+            registration.installing.addEventListener('statechange', function () {
+              if (this.state === 'activated') {
+                showReadyMsg();
+              }
+            });
+          }
+        })
+        .catch((err) => {
+          // فشل تسجيل الـ Service Worker لا يجب أن يوقف عمل المسابقة نفسها،
+          // فقط لن تتوفر ميزة العمل بدون إنترنت.
+          console.error('فشل تسجيل Service Worker:', err);
+        });
+    });
+  }
 </script>
 
 </body>

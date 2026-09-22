@@ -1,0 +1,21 @@
+{
+  "name": "مسابقة درس الكتاب",
+  "short_name": "مسابقة الكتاب",
+  "description": "مسابقة كتابية أوفلاين — أسرة مارمينا والبابا كيرلس السادس لخدمة المرضى",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#eef2f5",
+  "theme_color": "#3498db",
+  "dir": "rtl",
+  "lang": "ar",
+  "icons": [
+    {
+      "src": "./images/church-logo.jpg",
+      "sizes": "1280x1280",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}
