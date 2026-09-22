@@ -4,33 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>مسابقة درس الكتاب</title>
-  <!-- استدعاء خط Cairo -->
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-  <!-- مكتبة توليد الـ QR Code برمجياً أوفلاين بدون إنترنت -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  
+  <!-- مكتبة توليد الـ QR Code محليًا بالكامل بدون إنترنت -->
+  <script src="./js/qrcode.min.js"></script>
+
   <style>
     * { box-sizing: border-box; }
-    body { 
-      font-family: 'Cairo', sans-serif; 
-      background: #eef2f5; 
+    /* لا يوجد استدعاء لخط Google Fonts؛ نعتمد على Cairo إذا كان مثبتًا على الجهاز
+       وإلا نرجع تلقائيًا لخطوط النظام العربية المتاحة أوفلاين */
+    body {
+      font-family: 'Cairo', Tahoma, Arial, sans-serif;
+      background: #eef2f5;
       margin: 0;
-      padding: 20px 10px; 
-      direction: rtl; 
-      text-align: right; 
+      padding: 20px 10px;
+      direction: rtl;
+      text-align: right;
       color: #2c3e50;
     }
-    .container { 
-      max-width: 600px; 
-      margin: auto; 
-      background: #ffffff; 
-      padding: 25px 20px; 
-      border-radius: 15px; 
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08); 
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #ffffff;
+      padding: 25px 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
       border-top: 6px solid #3498db;
-      position: relative; 
+      position: relative;
     }
-    
+
     .header-box {
       display: flex;
       align-items: center;
@@ -47,56 +47,57 @@
       border-radius: 50%;
       object-fit: cover;
       border: 2px solid #3498db;
+      flex-shrink: 0;
     }
     .header-titles { text-align: center; }
     h2 { color: #1e3a8a; font-weight: 700; font-size: 20px; margin: 0 0 4px 0; }
     h4 { color: #0284c7; font-weight: 600; font-size: 13px; margin: 0; }
-    
-    .timer-box { 
-      position: sticky; 
-      top: 10px; 
-      background: #e74c3c; 
-      color: white; 
-      padding: 10px 15px; 
-      border-radius: 10px; 
-      text-align: center; 
-      font-size: 18px; 
-      font-weight: 700; 
-      z-index: 100; 
-      box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3); 
+
+    .timer-box {
+      position: sticky;
+      top: 10px;
+      background: #e74c3c;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 700;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
     }
 
-    .form-group { 
-      margin-bottom: 20px; 
+    .form-group {
+      margin-bottom: 20px;
       background: #f8fafc;
       padding: 15px;
       border-radius: 10px;
       border: 1px solid #e2e8f0;
     }
-    label.question-title { 
-      display: block; 
-      margin-bottom: 10px; 
-      font-weight: 700; 
+    label.question-title {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 700;
       font-size: 15px;
       color: #1e293b;
     }
-    input[type="text"] { 
-      width: 100%; 
-      padding: 12px; 
-      border: 1px solid #cbd5e1; 
-      border-radius: 8px; 
-      font-size: 15px; 
-      font-family: 'Cairo', sans-serif;
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: 'Cairo', Tahoma, Arial, sans-serif;
       outline: none;
     }
 
     .options-group { display: flex; flex-direction: column; gap: 8px; }
-    .option-item { 
-      display: flex; 
-      align-items: center; 
-      gap: 12px; 
-      font-weight: 600; 
-      cursor: pointer; 
+    .option-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      cursor: pointer;
       background: white;
       padding: 10px 14px;
       border-radius: 8px;
@@ -104,40 +105,63 @@
     }
     .option-item input[type="radio"] { width: 20px; height: 20px; accent-color: #3498db; }
 
-    button { 
-      width: 100%; 
-      background: #27ae60; 
-      color: white; 
-      border: none; 
-      padding: 14px; 
-      font-size: 17px; 
-      font-family: 'Cairo', sans-serif;
-      border-radius: 10px; 
-      cursor: pointer; 
-      font-weight: 700; 
-      margin-top: 15px; 
+    button {
+      width: 100%;
+      background: #27ae60;
+      color: white;
+      border: none;
+      padding: 14px;
+      font-size: 17px;
+      font-family: 'Cairo', Tahoma, Arial, sans-serif;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      margin-top: 15px;
     }
 
-    #qr-container { 
-      display: none; 
-      text-align: center; 
-      margin-top: 20px; 
-      padding: 25px 15px; 
-      background: #f0fdf4; 
-      border: 2px dashed #22c55e; 
-      border-radius: 12px; 
+    #qr-container {
+      display: none;
+      text-align: center;
+      margin-top: 20px;
+      padding: 25px 15px;
+      background: #f0fdf4;
+      border: 2px dashed #22c55e;
+      border-radius: 12px;
     }
     #qrcode {
       display: flex;
       justify-content: center;
       margin: 18px auto;
+      min-height: 200px;
+      align-items: center;
     }
-    #qrcode canvas, #qrcode img {
+    #qrcode svg, #qrcode canvas, #qrcode img {
       border: 6px solid white;
       border-radius: 10px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      max-width: 100%;
+      height: auto;
+      width: 220px;
     }
     .reset-btn { background: #3b82f6; margin-top: 15px; }
+
+    .qr-error {
+      color: #b91c1c;
+      background: #fee2e2;
+      border: 1px solid #fecaca;
+      border-radius: 8px;
+      padding: 14px;
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    /* لا يظهر تمرير أفقي على الموبايل */
+    html, body { max-width: 100%; overflow-x: hidden; }
+
+    @media (max-width: 400px) {
+      .header-box { flex-direction: column; }
+      .header-titles h2 { font-size: 18px; }
+    }
   </style>
 </head>
 <body>
@@ -146,7 +170,7 @@
   <div class="timer-box" id="timerBox">الوقت المتبقي: <span id="timer">02:00</span></div>
 
   <div class="header-box">
-    <img src="https://i.ibb.co/6R59V1q/church-logo.jpg" alt="لوجو الخدمة" class="header-logo" onerror="this.style.display='none'">
+    <img src="./images/church-logo.jpg" alt="لوجو الخدمة" class="header-logo">
     <div class="header-titles">
       <h2>مسابقة درس الكتاب</h2>
       <h4>أسرة مارمينا والبابا كيرلس السادس لخدمة المرضى</h4>
@@ -231,25 +255,49 @@
   const qrContainer = document.getElementById('qr-container');
   const timerBox = document.getElementById('timerBox');
   const timerDisplay = document.getElementById('timer');
-  let timeLeft = 120, timerInterval = null;
+  const qrcodeEl = document.getElementById('qrcode');
+  const finishTitle = document.getElementById('finishTitle');
+  let timeLeft = 120;
+  let timerInterval = null;
+  let submitted = false; // يمنع التنفيذ المزدوج عند انتهاء الوقت + الضغط على زر الإرسال معاً
+
+  function stopTimer() {
+    if (timerInterval !== null) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
+  }
 
   function startTimer() {
+    stopTimer(); // يمنع وجود مؤقتين معاً بعد الضغط على "بدء مسابقة جديدة"
     timeLeft = 120;
+    updateTimerDisplay();
     timerInterval = setInterval(() => {
-      let minutes = Math.floor(timeLeft / 60), seconds = timeLeft % 60;
-      timerDisplay.textContent = `0${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
-      if (timeLeft <= 0) {
-        clearInterval(timerInterval);
-        document.getElementById('finishTitle').textContent = "انتهى الوقت المحدد!";
-        document.getElementById('finishTitle').style.color = "#e74c3c";
-        submitQuiz();
-      }
       timeLeft--;
+      if (timeLeft <= 0) {
+        updateTimerDisplay();
+        stopTimer();
+        finishTitle.textContent = "انتهى الوقت المحدد!";
+        finishTitle.style.color = "#e74c3c";
+        submitQuiz();
+        return;
+      }
+      updateTimerDisplay();
     }, 1000);
   }
 
+  function updateTimerDisplay() {
+    const clamped = Math.max(timeLeft, 0);
+    const minutes = Math.floor(clamped / 60);
+    const seconds = clamped % 60;
+    timerDisplay.textContent = `0${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+  }
+
   function submitQuiz() {
-    clearInterval(timerInterval);
+    if (submitted) return; // يمنع توليد QR مزدوج (مثلاً لو انتهى الوقت واُرسل النموذج في نفس اللحظة)
+    submitted = true;
+    stopTimer();
+
     const name = document.getElementById('name').value || 'بدون اسم';
     const stage = document.getElementById('stage').value || 'غير محدد';
     let score = 0;
@@ -259,36 +307,55 @@
       return val;
     };
 
-    const resultText = `الاسم: ${name}\nالمرحلة: ${stage}\nالدرجة: ${score}/5\n----------------\nس1: ${getAns('q1')}\nس2: ${getAns('q2')}\nس3: ${getAns('q3')}\nس4: ${getAns('q4')}\nس5: ${getAns('q5')}`;
+    // مهم: يجب استدعاء getAns() لكل الأسئلة أولاً حتى يتم احتساب score بالكامل
+    // قبل إدراجه داخل النص، وإلا فإن قيمة score التي تظهر في الـ QR ستكون دائمًا صفرًا
+    // (لأن JavaScript يُدرج قيمة ${score} في النص فور الوصول إليها، قبل استدعاء getAns).
+    const ans1 = getAns('q1');
+    const ans2 = getAns('q2');
+    const ans3 = getAns('q3');
+    const ans4 = getAns('q4');
+    const ans5 = getAns('q5');
+
+    const resultText = `الاسم: ${name}\nالمرحلة: ${stage}\nالدرجة: ${score}/5\n----------------\nس1: ${ans1}\nس2: ${ans2}\nس3: ${ans3}\nس4: ${ans4}\nس5: ${ans5}`;
 
     form.style.display = 'none';
     timerBox.style.display = 'none';
     qrContainer.style.display = 'block';
 
-    document.getElementById('qrcode').innerHTML = "";
-    
-    // التوليد البرمجي أوفلاين
-    if (typeof QRCode !== "undefined") {
-      new QRCode(document.getElementById("qrcode"), {
-        text: resultText,
-        width: 200,
-        height: 200
-      });
-    } else {
-      const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(resultText)}`;
-      document.getElementById('qrcode').innerHTML = `<img src="${qrUrl}" alt="QR Code" width="200" height="200">`;
+    qrcodeEl.innerHTML = "";
+
+    try {
+      if (typeof qrcode === "undefined") {
+        throw new Error("qrcode library not loaded");
+      }
+      // مهم: المكتبة افتراضيًا تقصّ كل حرف إلى بايت واحد (charCode & 0xff) وهذا يُفسد
+      // النصوص العربية. يجب تفعيل محوّل UTF-8 الصحيح المدمج في المكتبة صراحةً.
+      qrcode.stringToBytes = qrcode.stringToBytesFuncs['UTF-8'];
+      // typeNumber 0 = يحدد المكتبة تلقائيًا أصغر إصدار QR يكفي للنص الحالي
+      var qr = qrcode(0, 'M');
+      qr.addData(resultText, 'Byte');
+      qr.make();
+      qrcodeEl.innerHTML = qr.createSvgTag({ cellSize: 5, margin: 4, scalable: true });
+    } catch (err) {
+      qrcodeEl.innerHTML = '<div class="qr-error">تعذر إنشاء رمز الـ QR. يرجى التقاط صورة للنتيجة يدويًا وإبلاغ المسؤول.</div>';
+      console.error('QR generation failed:', err);
     }
   }
 
-  form.addEventListener('submit', (e) => { e.preventDefault(); submitQuiz(); });
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    submitQuiz();
+  });
 
   function resetForm() {
+    submitted = false;
     form.reset();
     form.style.display = 'block';
     timerBox.style.display = 'block';
     qrContainer.style.display = 'none';
-    document.getElementById('finishTitle').textContent = "تم إنهاء المسابقة بنجاح!";
-    document.getElementById('finishTitle').style.color = "#27ae60";
+    qrcodeEl.innerHTML = "";
+    finishTitle.textContent = "تم إنهاء المسابقة بنجاح!";
+    finishTitle.style.color = "#27ae60";
     startTimer();
   }
 
