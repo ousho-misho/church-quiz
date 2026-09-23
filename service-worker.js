@@ -6,7 +6,7 @@
 //   https://username.github.io/REPO/     (مشروع داخل مسار فرعي)
 // لأننا لا نفترض أبدًا أن الموقع على جذر الدومين "/".
 
-const CACHE_VERSION = 'quiz-cache-v1';
+const CACHE_VERSION = 'quiz-cache-v2';
 
 // نبني قائمة الملفات المطلوب تخزينها اعتمادًا على مكان هذا الملف نفسه (self.location)
 // بدلاً من كتابة مسارات مطلقة تبدأ بـ "/"، حتى تعمل تحت أي مسار فرعي في GitHub Pages.
