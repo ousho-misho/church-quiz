@@ -355,63 +355,755 @@
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
+<!DOCTYPE html><html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مسابقة درس الكتاب</title>  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#3498db">
+  <link rel="icon" href="./images/church-logo.jpg">
+  <link rel="apple-touch-icon" href="./images/church-logo.jpg">  <script src="./js/qrcode.min.js"></script>  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Cairo', Tahoma, Arial, sans-serif;
+      background: #eef2f5;
+      margin: 0;
+      padding: 20px 10px;
+      direction: rtl;
+      text-align: right;
+      color: #2c3e50;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #ffffff;
+      padding: 25px 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      border-top: 6px solid #3498db;
+      position: relative;
+    }
+
+    .header-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      border-bottom: 2px dashed #e2e8f0;
+      padding-bottom: 15px;
+    }
+
+    .header-logo {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #3498db;
+      flex-shrink: 0;
+    }
+
+    .header-titles { text-align: center; }
+
+    h2 {
+      color: #1e3a8a;
+      font-weight: 700;
+      font-size: 20px;
+      margin: 0 0 4px 0;
+    }
+
+    h4 {
+      color: #0284c7;
+      font-weight: 600;
+      font-size: 13px;
+      margin: 0;
+    }
+
+    .timer-box {
+      position: sticky;
+      top: 10px;
+      background: #e74c3c;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 700;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      background: #f8fafc;
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+    }
+
+    label.question-title {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 700;
+      font-size: 15px;
+      color: #1e293b;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: 'Cairo', Tahoma, Arial, sans-serif;
+      outline: none;
+    }
+
+    .options-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .option-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      background: white;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .option-item input[type="radio"] {
+      width: 20px;
+      height: 20px;
+      accent-color: #3498db;
+    }
+
+    button {
+      width: 100%;
+      background: #27ae60;
+      color: white;
+      border: none;
+      padding: 14px;
+      font-size: 17px;
+      font-family: 'Cairo', Tahoma, Arial, sans-serif;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      margin-top: 15px;
+    }
+
+    #qr-container {
+      display: none;
+      text-align: center;
+      margin-top: 20px;
+      padding: 25px 15px;
+      background: #f0fdf4;
+      border: 2px dashed #22c55e;
+      border-radius: 12px;
+    }
+
+    #qrcode {
+      display: flex;
+      justify-content: center;
+      margin: 18px auto;
+      min-height: 200px;
+      align-items: center;
+    }
+
+    #qrcode svg,
+    #qrcode canvas,
+    #qrcode img {
+      border: 6px solid white;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      max-width: 100%;
+      height: auto;
+      width: 220px;
+    }
+
+    .reset-btn {
+      background: #3b82f6;
+      margin-top: 15px;
+    }
+
+    .qr-error {
+      color: #b91c1c;
+      background: #fee2e2;
+      border: 1px solid #fecaca;
+      border-radius: 8px;
+      padding: 14px;
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    @media (max-width: 400px) {
+      .header-box {
+        flex-direction: column;
+      }
+
+      .header-titles h2 {
+        font-size: 18px;
+      }
+    }
+  </style></head><body><div class="container">  <div class="timer-box" id="timerBox">
+    الوقت المتبقي: <span id="timer">02:00</span>
+  </div>  <div class="header-box">
+    <img src="./images/church-logo.jpg"
+         alt="لوجو الخدمة"
+         class="header-logo"><div class="header-titles">
+  <h2>مسابقة درس الكتاب</h2>
+  <h4>أسرة مارمينا والبابا كيرلس السادس لخدمة المرضى</h4>
+</div>
+
+  </div>  <div id="offlineReadyMsg"
+       style="display:none; text-align:center; font-size:12px; color:#16a34a; font-weight:700; margin:-8px 0 16px 0;">
+    تم تجهيز المسابقة للعمل بدون إنترنت
+  </div>  <form id="quizForm"><div class="form-group">
+  <label class="question-title">الاسم:</label>
+  <input type="text"
+         id="name"
+         required
+         placeholder="أدخل الاسم الثلاثي">
+</div>
+
+<div class="form-group">
+  <label class="question-title">اسم الأسرة / المرحلة:</label>
+  <input type="text"
+         id="stage"
+         required
+         placeholder="مثال: خادم / مرحلة إعدادي">
+</div>
+
+<div class="form-group">
+  <label class="question-title">
+    السؤال الأول: كم عدد أسفار العهد القديم؟
+  </label>
+
+  <div class="options-group">
+    <label class="option-item">
+      <input type="radio" name="q1" value="٣٩"> ٣٩
+    </label>
+
+    <label class="option-item">
+      <input type="radio" name="q1" value="٤٦"> ٤٦
+    </label>
+
+    <label class="option-item">
+      <input type="radio" name="q1" value="٣٠"> ٣٠
+    </label>
+
+    <label class="option-item">
+      <input type="radio" name="q1" value="٤٠"> ٤٠
+    </label>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="question-title">
+    السؤال الثاني: ما معنى اسم موسى؟
+  </label>
+
+  <div class="options-group">
+    <label class="option-item">
+      <input type="radio" name="q2" value="المنتشل من الماء">
+      المنتشل من الماء
+    </label>
+
+    <label class="option-item">
+      <input type="radio" name="q2" value="منقذ شعب اسرائيل">
+      منقذ شعب اسرائيل
+    </label>
+
+    <label class="option-item">
+      <input type="radio" name="q2" value="اب للأباء">
+      اب للأباء
+    </label>
+
+    <label class="option-item">
+      <input type="radio" name="q2" value="لم يذكر">
+      لم يذكر
+    </label>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="question-title">
+    السؤال الثالث: من هو كاتب سفر الخروج؟
+  </label>
+
+  <div class="options-group">
+    <label class="option-item">
+      <input type="radio" name="q3" value="موسى"> موسى
+    </label>
+
+    <label class="option-item">
+      <input type="radio" name="q3" value="صموئيل"> صموئيل
+    </label>
+
+    <label class="option-item">
+      <input type="radio" name="q3" value="داود"> داود
+    </label>
+
+    <label class="option-item">
+      <input type="radio" name="q3" value="نوح"> نوح
+    </label>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="question-title">
+    السؤال الرابع: أين استقر فلك نوح بعد أن جفت مياه الطوفان؟
+  </label>
+
+  <div class="options-group">
+    <label class="option-item">
+      <input type="radio" name="q4" value="جبل الزيتون">
+      جبل الزيتون
+    </label>
+
+    <label class="option-item">
+      <input type="radio" name="q4" value="جبل سيناء">
+      جبل سيناء
+    </label>
+
+    <label class="option-item">
+      <input type="radio" name="q4" value="جبل نيبو">
+      جبل نيبو
+    </label>
+
+    <label class="option-item">
+      <input type="radio" name="q4" value="جبل اراراط">
+      جبل اراراط
+    </label>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="question-title">
+    السؤال الخامس: ما اسم المدينة التي كان عليها ملشي صادق كاهن الله العلي؟
+  </label>
+
+  <div class="options-group">
+    <label class="option-item">
+      <input type="radio" name="q5" value="شكيم">
+      شكيم
+    </label>
+
+    <label class="option-item">
+      <input type="radio" name="q5" value="حبرون">
+      حبرون
+    </label>
+
+    <label class="option-item">
+      <input type="radio" name="q5" value="اور كلدانيين">
+      اور كلدانيين
+    </label>
+
+    <label class="option-item">
+      <input type="radio" name="q5" value="شاليم">
+      شاليم
+    </label>
+  </div>
+</div>
+
+<button type="submit">
+  إنهاء واستخراج الـ QR Code
+</button>
+
+  </form>  <div id="qr-container"><h3 id="finishTitle"
+    style="color: #27ae60; margin-top:0;">
+  تم إنهاء المسابقة بنجاح!
+</h3>
+
+<p>
+  يرجى إظهار الشاشة للكنترول لمسح رمز الـ QR وتسجيل إجابتك ودرجتك:
+</p>
+
+<div id="qrcode"></div>
+
+<button type="button"
+        class="reset-btn"
+        onclick="resetForm()">
+  بدء مسابقة جديدة
+</button>
+
+  </div></div><script>
+
+  const correctAnswers = {
+    q1: "٤٦",
+    q2: "المنتشل من الماء",
+    q3: "موسى",
+    q4: "جبل اراراط",
+    q5: "شاليم"
+  };
+
+  const form = document.getElementById('quizForm');
+  const qrContainer = document.getElementById('qr-container');
+  const timerBox = document.getElementById('timerBox');
+  const timerDisplay = document.getElementById('timer');
+  const qrcodeEl = document.getElementById('qrcode');
+  const finishTitle = document.getElementById('finishTitle');
+
+  let timeLeft = 120;
+  let timerInterval = null;
+  let submitted = false;
+
+  // =====================================================
+  // حفظ الأسماء التي استخدمت المسابقة على نفس الجهاز
+  // =====================================================
+
+  let usedNames = JSON.parse(
+    localStorage.getItem('usedNames') || '[]'
+  );
+
+  // =====================================================
+  // إيقاف المؤقت
+  // =====================================================
+
+  function stopTimer() {
+
+    if (timerInterval !== null) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
+
+  }
+
+  // =====================================================
+  // تشغيل المؤقت
+  // =====================================================
+
+  function startTimer() {
+
+    stopTimer();
+
+    timeLeft = 120;
+
+    updateTimerDisplay();
+
+    timerInterval = setInterval(() => {
+
+      timeLeft--;
+
+      if (timeLeft <= 0) {
+
+        updateTimerDisplay();
+
+        stopTimer();
+
+        finishTitle.textContent = "انتهى الوقت المحدد!";
+        finishTitle.style.color = "#e74c3c";
+
+        submitQuiz();
+
+        return;
+      }
+
+      updateTimerDisplay();
+
+    }, 1000);
+
+  }
+
+  // =====================================================
+  // تحديث الوقت
+  // =====================================================
+
+  function updateTimerDisplay() {
+
+    const clamped = Math.max(timeLeft, 0);
+
+    const minutes = Math.floor(clamped / 60);
+
+    const seconds = clamped % 60;
+
+    timerDisplay.textContent =
+      `0${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+
+  }
+
+  // =====================================================
+  // إنهاء المسابقة
+  // =====================================================
+
+  function submitQuiz() {
+
+    if (submitted) return;
+
+    // الحصول على الاسم قبل تسجيل الإرسال
+    const nameInput = document.getElementById('name');
+
+    const name = nameInput.value.trim() || 'بدون اسم';
+
+    // =================================================
+    // منع الاسم من استخدام المسابقة مرة ثانية
+    // =================================================
+
+    if (usedNames.includes(name)) {
+
+      alert(
+        'هذا الاسم استخدم المسابقة بالفعل على هذا الجهاز.'
+      );
+
+      return;
+    }
+
+    // =================================================
+    // تسجيل أن المسابقة تم إرسالها
+    // =================================================
+
+    submitted = true;
+
+    stopTimer();
+
+    const stage =
+      document.getElementById('stage').value ||
+      'غير محدد';
+
+    let score = 0;
+
+    const getAns = (q) => {
+
+      const val =
+        document.querySelector(
+          `input[name="${q}"]:checked`
+        )?.value || 'لم يُجب';
+
+      if (val === correctAnswers[q]) {
+        score++;
+      }
+
+      return val;
+
+    };
+
+    // الحصول على إجابات كل الأسئلة
+
+    const ans1 = getAns('q1');
+    const ans2 = getAns('q2');
+    const ans3 = getAns('q3');
+    const ans4 = getAns('q4');
+    const ans5 = getAns('q5');
+
+    // =================================================
+    // حفظ الاسم على الجهاز
+    // =================================================
+
+    if (!usedNames.includes(name)) {
+
+      usedNames.push(name);
+
+      localStorage.setItem(
+        'usedNames',
+        JSON.stringify(usedNames)
+      );
+
+    }
+
+    // =================================================
+    // إنشاء نص الـ QR
+    // =================================================
+
+    const resultText =
+      `الاسم: ${name}\n` +
+      `المرحلة: ${stage}\n` +
+      `الدرجة: ${score}/5\n` +
+      `----------------\n` +
+      `س1: ${ans1}\n` +
+      `س2: ${ans2}\n` +
+      `س3: ${ans3}\n` +
+      `س4: ${ans4}\n` +
+      `س5: ${ans5}`;
+
+    // إخفاء الفورم
+
+    form.style.display = 'none';
+
+    timerBox.style.display = 'none';
+
+    qrContainer.style.display = 'block';
+
+    // مسح QR القديم
+
+    qrcodeEl.innerHTML = "";
+
+    // =================================================
+    // إنشاء QR
+    // =================================================
+
+    try {
+
+      if (typeof qrcode === "undefined") {
+
+        throw new Error(
+          "qrcode library not loaded"
+        );
+
+      }
+
+      qrcode.stringToBytes =
+        qrcode.stringToBytesFuncs['UTF-8'];
+
+      var qr = qrcode(0, 'M');
+
+      qr.addData(resultText, 'Byte');
+
+      qr.make();
+
+      qrcodeEl.innerHTML =
+        qr.createSvgTag({
+          cellSize: 5,
+          margin: 4,
+          scalable: true
+        });
+
+    } catch (err) {
+
+      qrcodeEl.innerHTML =
+        '<div class="qr-error">' +
+        'تعذر إنشاء رمز الـ QR. يرجى التقاط صورة للنتيجة يدويًا وإبلاغ المسؤول.' +
+        '</div>';
+
+      console.error(
+        'QR generation failed:',
+        err
+      );
+
+    }
+
+  }
+
+  // =====================================================
+  // إرسال الفورم
+  // =====================================================
+
+  form.addEventListener('submit', (e) => {
+
+    e.preventDefault();
+
     submitQuiz();
+
   });
 
+  // =====================================================
+  // بدء مسابقة جديدة
+  // =====================================================
+
   function resetForm() {
+
     submitted = false;
+
     form.reset();
+
     form.style.display = 'block';
+
     timerBox.style.display = 'block';
+
     qrContainer.style.display = 'none';
+
     qrcodeEl.innerHTML = "";
-    finishTitle.textContent = "تم إنهاء المسابقة بنجاح!";
-    finishTitle.style.color = "#27ae60";
+
+    finishTitle.textContent =
+      "تم إنهاء المسابقة بنجاح!";
+
+    finishTitle.style.color =
+      "#27ae60";
+
     startTimer();
+
   }
+
+  // تشغيل المؤقت عند فتح الصفحة
 
   startTimer();
-</script>
 
-<script>
-  // تسجيل الـ Service Worker لتفعيل العمل بدون إنترنت (PWA).
-  // هذا الكود منفصل تمامًا عن منطق المسابقة أعلاه ولا يؤثر عليه بأي شكل.
+</script><script>
+
+  // =====================================================
+  // Service Worker لتفعيل العمل بدون إنترنت
+  // =====================================================
+
   if ('serviceWorker' in navigator) {
+
     window.addEventListener('load', () => {
-      // مسار نسبي (وليس "/service-worker.js") حتى يعمل بشكل صحيح
-      // سواء كان الموقع على جذر الدومين أو داخل مسار فرعي لمشروع GitHub Pages
-      // مثل: https://username.github.io/REPO/
-      navigator.serviceWorker.register('./service-worker.js')
+
+      navigator.serviceWorker
+        .register('./service-worker.js')
+
         .then((registration) => {
+
           const showReadyMsg = () => {
-            const msg = document.getElementById('offlineReadyMsg');
+
+            const msg =
+              document.getElementById(
+                'offlineReadyMsg'
+              );
+
             if (!msg) return;
+
             msg.style.display = 'block';
-            setTimeout(() => { msg.style.display = 'none'; }, 4000);
+
+            setTimeout(() => {
+
+              msg.style.display = 'none';
+
+            }, 4000);
+
           };
 
-          // لو يوجد Service Worker يعمل بالفعل ويتحكم في الصفحة، فهذا يعني أن التخزين تم مسبقًا.
           if (navigator.serviceWorker.controller) {
+
             showReadyMsg();
+
           }
 
-          // في أول مرة، ننتظر انتهاء تثبيت النسخة الجديدة لإعلام المستخدم أن التخزين اكتمل.
           if (registration.installing) {
-            registration.installing.addEventListener('statechange', function () {
-              if (this.state === 'activated') {
-                showReadyMsg();
-              }
-            });
-          }
-        })
-        .catch((err) => {
-          // فشل تسجيل الـ Service Worker لا يجب أن يوقف عمل المسابقة نفسها،
-          // فقط لن تتوفر ميزة العمل بدون إنترنت.
-          console.error('فشل تسجيل Service Worker:', err);
-        });
-    });
-  }
-</script>
 
-</body>
+            registration.installing
+              .addEventListener(
+                'statechange',
+                function () {
+
+                  if (
+                    this.state === 'activated'
+                  ) {
+
+                    showReadyMsg();
+
+                  }
+
+                }
+              );
+
+          }
+
+        })
+
+        .catch((err) => {
+
+          console.error(
+            'فشل تسجيل Service Worker:',
+            err
+          );
+
+        });
+
+    });
+
+  }
+
+</script></body>
 </html>
