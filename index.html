@@ -320,7 +320,8 @@
       qrcode.stringToBytes = qrcode.stringToBytesFuncs['UTF-8'];  
       // typeNumber 0 = يحدد المكتبة تلقائيًا أصغر إصدار QR يكفي للنص الحالي  
       var qr = qrcode(0, 'M');  
-      qr.addData(resultText, 'Byte');  
+    const scannerUrl = 'https://script.google.com/macros/s/AKfycbxZiBIkB6-3rjtFRGXVy0I3xGWiocJtRba--6NzWIwERMINU9ztAXHb3M0S7sWH0kcr/exec?data=' + encodeURIComponent(resultText);
+qr.addData(scannerUrl, 'Byte'); 
       qr.make();  
       qrcodeEl.innerHTML = qr.createSvgTag({ cellSize: 5, margin: 4, scalable: true });  
     } catch (err) {  
