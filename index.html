@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>مسابقة درس الكتاب</title>
 
   <meta name="theme-color" content="#0d6efd">
@@ -53,11 +55,18 @@
     }
 
     .timer {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: white;
       text-align: center;
       font-size: 25px;
       font-weight: bold;
       color: #d9534f;
       margin: 20px 0;
+      padding: 12px;
+      border-radius: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.10);
     }
 
     .info {
@@ -68,7 +77,7 @@
       box-shadow: 0 2px 8px rgba(0,0,0,.08);
     }
 
-    input {
+    input[type="text"] {
       width: 100%;
       box-sizing: border-box;
       padding: 12px;
@@ -106,6 +115,10 @@
       background: #e2e6ea;
     }
 
+    label input[type="radio"] {
+      margin-left: 8px;
+    }
+
     button {
       width: 100%;
       padding: 15px;
@@ -122,6 +135,11 @@
       background: #157347;
     }
 
+    button:disabled {
+      background: #777;
+      cursor: not-allowed;
+    }
+
     #result {
       display: none;
       background: white;
@@ -129,10 +147,17 @@
       padding: 20px;
       border-radius: 15px;
       text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,.08);
     }
 
     #qrcode {
       margin-top: 20px;
+      overflow: auto;
+    }
+
+    #qrcode svg {
+      max-width: 100%;
+      height: auto;
     }
   </style>
 </head>
@@ -147,296 +172,33 @@
 
   <div class="container">
 
+    <!-- العداد -->
     <div class="timer">
-      ⏱️ الوقت المتبقي: <span id="timer">10:00</span>
+      ⏱️ الوقت المتبقي:
+      <span id="timer">10:00</span>
     </div>
 
+    <!-- البيانات -->
     <div class="info">
+
       <label for="name">الاسم</label>
-      <input type="text" id="name" placeholder="اكتب اسمك">
+      <input
+        type="text"
+        id="name"
+        placeholder="اكتب اسمك"
+      >
 
       <label for="service">اسم الخدمة</label>
-      <input type="text" id="service" placeholder="اكتب اسم الخدمة">
+      <input
+        type="text"
+        id="service"
+        placeholder="اكتب اسم الخدمة"
+      >
+
     </div>
+
 
     <form id="quizForm">
 
       <!-- السؤال 1 -->
-      <div class="question">
-        <h3>1) من هم الجبابرة؟</h3>
-
-        <label>
-          <input type="radio" name="q1"
-            value="أبناء الذين ولدوا من تزوج أبناء شيث مع بنات قاين">
-          أبناء الذين ولدوا من تزوج أبناء شيث مع بنات قاين
-        </label>
-
-        <label>
-          <input type="radio" name="q1"
-            value="أبناء الذين ولدوا من تزوج بنات شيث مع أولاد قاين">
-          أبناء الذين ولدوا من تزوج بنات شيث مع أولاد قاين
-        </label>
-
-        <label>
-          <input type="radio" name="q1"
-            value="أبناء آدم وحواء">
-          أبناء آدم وحواء
-        </label>
-
-        <label>
-          <input type="radio" name="q1"
-            value="أبناء لامك وامرأتين صلة وعادة">
-          أبناء لامك وامرأتين صلة وعادة
-        </label>
-      </div>
-
-
-      <!-- السؤال 2 -->
-      <div class="question">
-        <h3>2) استراح الله في</h3>
-
-        <label>
-          <input type="radio" name="q2" value="اليوم الخامس">
-          اليوم الخامس
-        </label>
-
-        <label>
-          <input type="radio" name="q2" value="اليوم السابع">
-          اليوم السابع
-        </label>
-
-        <label>
-          <input type="radio" name="q2" value="اليوم الثالث">
-          اليوم الثالث
-        </label>
-
-        <label>
-          <input type="radio" name="q2" value="اليوم الأول">
-          اليوم الأول
-        </label>
-      </div>
-
-
-      <!-- السؤال 3 -->
-      <div class="question">
-        <h3>3) تشتهر أرض الحويلة بـ</h3>
-
-        <label>
-          <input type="radio" name="q3" value="الخضرة">
-          الخضرة
-        </label>
-
-        <label>
-          <input type="radio" name="q3" value="الجبال">
-          الجبال
-        </label>
-
-        <label>
-          <input type="radio" name="q3" value="الذهب">
-          الذهب
-        </label>
-
-        <label>
-          <input type="radio" name="q3" value="النحاس">
-          النحاس
-        </label>
-      </div>
-
-
-      <!-- السؤال 4 -->
-      <div class="question">
-        <h3>4) تقدمة هابيل كانت</h3>
-
-        <label>
-          <input type="radio" name="q4" value="أبكار غنم">
-          أبكار غنم
-        </label>
-
-        <label>
-          <input type="radio" name="q4" value="ثمار الأرض">
-          ثمار الأرض
-        </label>
-
-        <label>
-          <input type="radio" name="q4" value="غنم وثمار الأرض">
-          غنم وثمار الأرض
-        </label>
-
-        <label>
-          <input type="radio" name="q4" value="طيور وغنم">
-          طيور وغنم
-        </label>
-      </div>
-
-
-      <!-- السؤال 5 -->
-      <div class="question">
-        <h3>5) فنادى الرب الإله........ أين أنت؟</h3>
-
-        <label>
-          <input type="radio" name="q5" value="آدم">
-          آدم
-        </label>
-
-        <label>
-          <input type="radio" name="q5" value="نوح">
-          نوح
-        </label>
-
-        <label>
-          <input type="radio" name="q5" value="قاين">
-          قاين
-        </label>
-
-        <label>
-          <input type="radio" name="q5" value="حواء">
-          حواء
-        </label>
-      </div>
-
-
-      <!-- السؤال 6 -->
-      <div class="question">
-        <h3>6) لم يوجد لأن الله أخذه</h3>
-
-        <label>
-          <input type="radio" name="q6" value="نوح">
-          نوح
-        </label>
-
-        <label>
-          <input type="radio" name="q6" value="متوشالح">
-          متوشالح
-        </label>
-
-        <label>
-          <input type="radio" name="q6" value="لامك">
-          لامك
-        </label>
-
-        <label>
-          <input type="radio" name="q6" value="أخنوخ">
-          أخنوخ
-        </label>
-      </div>
-
-
-      <!-- السؤال 7 -->
-      <div class="question">
-        <h3>7) أبعاد الفلك</h3>
-
-        <label>
-          <input type="radio" name="q7"
-            value="300 ذراع طول و50 ذراع عرض و30 ذراع ارتفاع">
-          ٣٠٠ ذراع طول و٥٠ ذراع عرض و٣٠ ذراع ارتفاع
-        </label>
-
-        <label>
-          <input type="radio" name="q7"
-            value="30 ذراع طول و300 ذراع عرض و500 ذراع ارتفاع">
-          ٣٠ ذراع طول و٣٠٠ ذراع عرض و٥٠٠ ذراع ارتفاع
-        </label>
-
-        <label>
-          <input type="radio" name="q7"
-            value="500 ذراع ارتفاع و50 ذراع عرض و30 ذراع ارتفاع">
-          ٥٠٠ ذراع ارتفاع و٥٠ ذراع عرض و٣٠ ذراع ارتفاع
-        </label>
-
-        <label>
-          <input type="radio" name="q7"
-            value="50 ذراع طول و70 ذراع عرض و30 ذراع ارتفاع">
-          ٥٠ ذراع طول و٧٠ ذراع عرض و٣٠ ذراع ارتفاع
-        </label>
-      </div>
-
-
-      <!-- السؤال 8 -->
-      <div class="question">
-        <h3>8) أول رجل تزوج امرأتين</h3>
-
-        <label>
-          <input type="radio" name="q8" value="لامك">
-          لامك
-        </label>
-
-        <label>
-          <input type="radio" name="q8" value="قاين">
-          قاين
-        </label>
-
-        <label>
-          <input type="radio" name="q8" value="شيث">
-          شيث
-        </label>
-
-        <label>
-          <input type="radio" name="q8" value="نوح">
-          نوح
-        </label>
-      </div>
-
-
-      <!-- السؤال 9 -->
-      <div class="question">
-        <h3>9) أولاد نوح</h3>
-
-        <label>
-          <input type="radio" name="q9" value="سام وكنعان وحام">
-          سام وكنعان وحام
-        </label>
-
-        <label>
-          <input type="radio" name="q9" value="سام وحام ويافث">
-          سام وحام ويافث
-        </label>
-
-        <label>
-          <input type="radio" name="q9" value="حام وأنوش ويافث">
-          حام وأنوش ويافث
-        </label>
-
-        <label>
-          <input type="radio" name="q9" value="سام وحام ولامك">
-          سام وحام ولامك
-        </label>
-      </div>
-
-
-      <!-- السؤال 10 -->
-      <div class="question">
-        <h3>10) كم كان عمر نوح حين بدأ الطوفان؟</h3>
-
-        <label>
-          <input type="radio" name="q10" value="500">
-          ٥٠٠ سنة
-        </label>
-
-        <label>
-          <input type="radio" name="q10" value="300">
-          ٣٠٠ سنة
-        </label>
-
-        <label>
-          <input type="radio" name="q10" value="900">
-          ٩٠٠ سنة
-        </label>
-
-        <label>
-          <input type="radio" name="q10" value="600">
-          ٦٠٠ سنة
-        </label>
-      </div>
-
-
-      <button type="button" onclick="submitQuiz()">
-        إرسال الإجابات
-      </button>
-
-    </form>
-
-
-    <div id="result">
-      <h2>تم إرسال المسابقة ❤️</h2>
-      <p id="scoreText"></p>
-      <div id="q
+      <div class="
