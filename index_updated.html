@@ -23,11 +23,11 @@
     .container {
       max-width: 600px;
       margin: auto;
-      background: white;
+      background: #fff;
       border-radius: 15px;
       padding: 20px;
       border-top: 6px solid #1976d2;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 15px rgba(0,0,0,.08);
     }
 
     .header-box {
@@ -40,24 +40,22 @@
       height: 90px;
       object-fit: cover;
       border-radius: 50%;
-      margin-bottom: 10px;
     }
 
     .header-box h1 {
-      margin: 5px 0;
-      font-size: 24px;
       color: #1976d2;
+      margin: 10px 0 5px;
     }
 
     .header-box p {
-      margin: 5px 0;
       color: #666;
+      margin: 5px 0;
     }
 
     .timer-box {
       position: sticky;
       top: 10px;
-      z-index: 10;
+      z-index: 100;
       background: #d32f2f;
       color: white;
       text-align: center;
@@ -76,7 +74,6 @@
       display: block;
       font-weight: bold;
       margin-bottom: 8px;
-      font-size: 17px;
     }
 
     input[type="text"] {
@@ -95,501 +92,15 @@
 
     .question-title {
       font-weight: bold;
-      margin-bottom: 12px;
       font-size: 17px;
-      line-height: 1.6;
+      line-height: 1.7;
+      margin-bottom: 12px;
     }
 
     .option-item {
       display: block;
       padding: 11px;
-      margin: 7px 0;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .option-item:hover {
-      background: #f1f7ff;
-    }
-
-    .option-item input {
-      margin-left: 8px;
-    }
-
-    button {
-      width: 100%;
-      border: none;
-      background: #2e7d32;
-      color: white;
-      padding: 14px;
-      border-radius: 10px;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #256628;
-    }
-
-    #result {
-      display: none;
-      text-align: center;
-    }
-
-    #finishTitle {
-      color: #1976d2;
-      margin-bottom: 10px;
-    }
-
-    #scoreText {
-      font-size: 22px;
-      font-weight: bold;
-      margin: 15px 0;
-    }
-
-    #qr-container {
-      margin-top: 20px;
-      padding: 15px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      background: #fff;
-    }
-
-    #qrcode {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: auto;
-    }
-
-    .qr-error {
-      color: #d32f2f;
-      font-weight: bold;
-      margin-top: 10px;
-    }
-
-    .note {
-      color: #777;
-      font-size: 14px;
-      line-height: 1.6;
-      margin-top: 15px;
-    }
-  </style>
-</head>
-
-<body>
-
-  <div class="container">
-
-    <div class="header-box">
-      <img src="./images/church-logo.jpg" alt="شعار الكنيسة">
-
-      <h1>مسابقة سفر التكوين ❤️</h1>
-      <p>أجب عن الأسئلة قبل انتهاء الوقت</p>
-    </div>
-
-    <div class="timer-box">
-      الوقت المتبقي:
-      <span id="timer">10:00</span>
-    </div>
-
-    <form id="quizForm">
-
-      <div class="form-group">
-        <label for="name">الاسم</label>
-        <input type="text" id="name" placeholder="اكتب اسمك">
-      </div>
-
-      <div class="form-group">
-        <label for="stage">الخدمة / المرحلة</label>
-        <input type="text" id="stage" placeholder="اكتب الخدمة أو المرحلة">
-      </div>
-
-      <!-- السؤال 1 -->
-      <div class="question">
-        <div class="question-title">
-          1) فنادى الرب الإله........ أين أنت؟
-        </div>
-
-        <label class="option-item">
-          <input type="radio" name="q1" value="آدم">
-          آدم
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q1" value="نوح">
-          نوح
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q1" value="إبراهيم">
-          إبراهيم
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q1" value="موسى">
-          موسى
-        </label>
-      </div>
-
-      <!-- السؤال 2 -->
-      <div class="question">
-        <div class="question-title">
-          2) استراح الله في:
-        </div>
-
-        <label class="option-item">
-          <input type="radio" name="q2" value="اليوم الأول">
-          اليوم الأول
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q2" value="اليوم الثالث">
-          اليوم الثالث
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q2" value="اليوم السابع">
-          اليوم السابع
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q2" value="اليوم السادس">
-          اليوم السادس
-        </label>
-      </div>
-
-      <!-- السؤال 3 -->
-      <div class="question">
-        <div class="question-title">
-          3) تشتهر أرض الحويلة بـ:
-        </div>
-
-        <label class="option-item">
-          <input type="radio" name="q3" value="الفضة">
-          الفضة
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q3" value="الذهب">
-          الذهب
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q3" value="الحديد">
-          الحديد
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q3" value="النحاس">
-          النحاس
-        </label>
-      </div>
-
-      <!-- السؤال 4 -->
-      <div class="question">
-        <div class="question-title">
-          4) تقدمة هابيل كانت:
-        </div>
-
-        <label class="option-item">
-          <input type="radio" name="q4" value="ثمار الأرض">
-          ث() {
-
-  if (timerInterval !== null) {
-
-    clearInterval(timerInterval);
-
-    timerInterval = null;
-
-  }
-}
-
-
-function startTimer() {
-
-  stopTimer();
-
-  timeLeft = 600;
-
-  updateTimerDisplay();
-
-  timerInterval =
-    setInterval(function () {
-
-      timeLeft--;
-
-      updateTimerDisplay();
-
-      if (timeLeft <= 0) {
-
-        stopTimer();
-
-        finishTitle.textContent =
-          "انتهى الوقت المحدد!";
-
-        finishTitle.style.color =
-          "#e74c3c";
-
-        submitQuiz();
-
-      }
-
-    }, 1000);
-}
-
-
-function getAnswer(question) {
-
-  const selected =
-    document.querySelector(
-      'input[name="' +
-      question +
-      '"]:checked'
-    );
-
-  return selected
-    ? selected.value
-    : "لم يُجب";
-}
-
-
-function submitQuiz() {
-
-  if (submitted) return;
-
-  submitted = true;
-
-  stopTimer();
-
-
-  const name =
-    document.getElementById("name")
-      .value
-      .trim() || "بدون اسم";
-
-
-  const stage =
-    document.getElementById("stage")
-      .value
-      .trim() || "غير محدد";
-
-
-  let score = 0;
-
-  const answers = {};
-
-
-  for (const question in correctAnswers) {
-
-    answers[question] =
-      getAnswer(question);
-
-    if (
-      answers[question] ===
-      correctAnswers[question]
-    ) {
-
-      score++;
-
-    }
-  }
-
-
-  const resultText =
-`الاسم: ${name}
-المرحلة: ${stage}
-الدرجة: ${score}/10
-----------------
-س1: ${answers.q1}
-س2: ${answers.q2}
-س3: ${answers.q3}
-س4: ${answers.q4}
-س5: ${answers.q5}
-س6: ${answers.q6}
-س7: ${answers.q7}
-س8: ${answers.q8}
-س9: ${answers.q9}
-س10: ${answers.q10}`;
-
-
-  form.style.display = "none";
-
-  timerBox.style.display = "none";
-
-  qrContainer.style.display = "block";
-
-
-  scoreText.innerHTML =
-    "<h2>درجتك: " +
-    score +
-    "/10</h2>";
-
-
-  qrcodeEl.innerHTML = "";
-
-
-  try {
-
-    if (
-      typeof qrcode === "undefined"
-    ) {
-
-      throw new Error(
-        "QR library not loaded"
-      );
-
-    }
-
-
-    qrcode.stringToBytes =
-      qrcode.stringToBytesFuncs["UTF-8"];
-
-
-    const qr =
-      qrcode(0, "M");
-
-
-    const scannerURL =
-      "https://script.google.com/macros/s/AKfycbwfqwnUDieOCOScxoXwHZxrrALHOKxLIQvKvEx9W3poPdsxka1kVF8U3zVKXKbcIsM/exec";
-
-
-    const qrData =
-      scannerURL +
-      "?data=" +
-      encodeURIComponent(resultText);
-
-
-    qr.addData(
-      qrData,
-      "Byte"
-    );
-
-
-    qr.make();
-
-
-    qrcodeEl.innerHTML =
-      qr.createSvgTag({
-
-        cellSize: 5,
-
-        margin: 4,
-
-        scalable: true
-
-      });
-
-
-  } catch (error) {
-
-    console.error(
-      "QR Error:",
-      error
-    );
-
-
-    qrcodeEl.innerHTML =
-      `
-      <div class="qr-error">
-        تعذر إنشاء رمز الـQR.
-        <br>
-        برجاء إبلاغ المسؤول.
-      </div>
-      `;
-
-  }
-
-
-  window.scrollTo({
-
-    top: document.body.scrollHeight,
-
-    behavior: "smooth"
-
-  });
-
-}
-
-
-form.addEventListener(
-  "submit",
-  function (event) {
-
-    event.preventDefault();
-
-    submitQuiz();
-
-  }
-);
-
-
-startTimer();
-
-</script>
-
-
-<script>
-
-if ("serviceWorker" in navigator) {
-
-  window.addEventListener(
-    "load",
-    function () {
-
-      navigator.serviceWorker
-        .register("./service-worker.js")
-        .catch(function (error) {
-
-          console.error(
-            "Service Worker Error:",
-            error
-          );
-
-        });
-
-    }
-  );
-
-}
-
-</script>
-
-</body>
-</html>tem">
-          <input type="radio" name="q7" value="٤٠٠ سنة">
-          ٤٠٠ سنة
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q7" value="٥٠٠ سنة">
-          ٥٠٠ سنة
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q7" value="٦٠٠ سنة">
-          ٦٠٠ سنة
-        </label>
-
-      </div>
-    </div>
-
-
-    <!-- السؤال 8 -->
-
-    <div class="form-group">
-
-      <label class="question-title">
-        8. كم يومًا استمر الطوفان على الأرض؟
-      </label>
-
-      <div class="options-group">
-
-        <label class="option-item">
-          <input type="radio" name="q8" value="١٥٠ يوم">
+     dio" name="q8" value="١٥٠ يوم">
           ١٥٠ يوم
         </label>
 
