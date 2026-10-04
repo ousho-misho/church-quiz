@@ -92,6 +92,14 @@
       margin-bottom: 20px;
     }
 
+    #timer {
+      font-size: 24px;
+      font-weight: 800;
+      direction: ltr;
+      display: inline-block;
+      min-width: 65px;
+    }
+
     .form-group {
       margin-bottom: 20px;
       background: #f8fafc;
@@ -157,6 +165,11 @@
       margin-top: 15px;
     }
 
+    button:disabled {
+      background: #888;
+      cursor: not-allowed;
+    }
+
     #qr-container {
       display: none;
       text-align: center;
@@ -216,11 +229,14 @@
 
 <div class="container">
 
+  <!-- العداد -->
   <div class="timer-box" id="timerBox">
     الوقت المتبقي:
     <span id="timer">10:00</span>
   </div>
 
+
+  <!-- الهيدر -->
   <div class="header-box">
 
     <img
@@ -241,7 +257,10 @@
 
     <!-- الاسم -->
     <div class="form-group">
-      <label class="question-title">الاسم:</label>
+
+      <label class="question-title">
+        الاسم:
+      </label>
 
       <input
         type="text"
@@ -249,12 +268,16 @@
         required
         placeholder="اكتب اسمك"
       >
+
     </div>
 
 
     <!-- المرحلة -->
     <div class="form-group">
-      <label class="question-title">المرحلة:</label>
+
+      <label class="question-title">
+        المرحلة:
+      </label>
 
       <input
         type="text"
@@ -262,6 +285,7 @@
         required
         placeholder="مثال: خدمات متخصصه / منطقه / لجنه"
       >
+
     </div>
 
 
@@ -269,229 +293,7 @@
     <div class="form-group">
 
       <label class="question-title">
-        1. من هم الجبابرة؟
-      </label>
-
-      <div class="options-group">
-
-        <label class="option-item">
-          <input
-            type="radio"
-            name="q1"
-            value="أبناء الذين ولدوا من تزوج أبناء شيث مع بنات قاين"
-          >
-          أبناء الذين ولدوا من تزوج أبناء شيث مع بنات قاين
-        </label>
-
-        <label class="option-item">
-          <input
-            type="radio"
-            name="q1"
-            value="أبناء الذين ولدوا من تزوج بنات شيث مع أولاد قاين"
-          >
-          أبناء الذين ولدوا من تزوج بنات شيث مع أولاد قاين
-        </label>
-
-        <label class="option-item">
-          <input
-            type="radio"
-            name="q1"
-            value="أبناء آدم وحواء"
-          >
-          أبناء آدم وحواء
-        </label>
-
-        <label class="option-item">
-          <input
-            type="radio"
-            name="q1"
-            value="أبناء لامك وامرأتين صلة وعادة"
-          >
-          أبناء لامك وامرأتين صلة وعادة
-        </label>
-
-      </div>
-    </div>
-
-
-    <!-- السؤال 2 -->
-    <div class="form-group">
-
-      <label class="question-title">
-        2. استراح الله في
-      </label>
-
-      <div class="options-group">
-
-        <label class="option-item">
-          <input type="radio" name="q2" value="اليوم الخامس">
-          اليوم الخامس
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q2" value="اليوم السابع">
-          اليوم السابع
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q2" value="اليوم الثالث">
-          اليوم الثالث
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q2" value="اليوم الأول">
-          اليوم الأول
-        </label>
-
-      </div>
-    </div>
-
-
-    <!-- السؤال 3 -->
-    <div class="form-group">
-
-      <label class="question-title">
-        3. تشتهر أرض الحويلة بـ
-      </label>
-
-      <div class="options-group">
-
-        <label class="option-item">
-          <input type="radio" name="q3" value="الخضرة">
-          الخضرة
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q3" value="الجبال">
-          الجبال
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q3" value="الذهب">
-          الذهب
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q3" value="النحاس">
-          النحاس
-        </label>
-
-      </div>
-    </div>
-
-
-    <!-- السؤال 4 -->
-    <div class="form-group">
-
-      <label class="question-title">
-        4. تقدمة هابيل كانت
-      </label>
-
-      <div class="options-group">
-
-        <label class="option-item">
-          <input type="radio" name="q4" value="أبكار غنم">
-          أبكار غنم
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q4" value="ثمار الأرض">
-          ثمار الأرض
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q4" value="غنم وثمار الأرض">
-          غنم وثمار الأرض
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q4" value="طيور وغنم">
-          طيور وغنم
-        </label>
-
-      </div>
-    </div>
-
-
-    <!-- السؤال 5 -->
-    <div class="form-group">
-
-      <label class="question-title">
-        5. فنادى الرب الإله........ أين أنت؟
-      </label>
-
-      <div class="options-group">
-
-        <label class="option-item">
-          <input type="radio" name="q5" value="آدم">
-          آدم
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q5" value="نوح">
-          نوح
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q5" value="قاين">
-          قاين
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q5" value="حواء">
-          حواء
-        </label>
-
-      </div>
-    </div>
-
-
-    <!-- السؤال 6 -->
-    <div class="form-group">
-
-      <label class="question-title">
-        6. لم يوجد لأن الله أخذه
-      </label>
-
-      <div class="options-group">
-
-        <label class="option-item">
-          <input type="radio" name="q6" value="نوح">
-          نوح
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q6" value="متوشالح">
-          متوشالح
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q6" value="لامك">
-          لامك
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q6" value="أخنوخ">
-          أخنوخ
-        </label>
-
-      </div>
-    </div>
-
-
-    <!-- السؤال 7 -->
-    <div class="form-group">
-
-      <label class="question-title">
-        7. أبعاد الفلك
-      </label>
-
-      <div class="options-group">
-
-        <label class="option-item">
-          <input
-            type="radio"
-            name="q7"
+        1. من هم الج7"
             value="٣٠٠ ذراع طول و٥٠ ذراع عرض و٣٠ ذراع ارتفاع"
           >
           ٣٠٠ ذراع طول و٥٠ ذراع عرض و٣٠ ذراع ارتفاع
