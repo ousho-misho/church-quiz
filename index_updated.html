@@ -5,15 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>مسابقة درس الكتاب</title>
-
-  <link rel="manifest" href="./manifest.json">
-  <meta name="theme-color" content="#3498db">
-
-  <link rel="icon" href="./images/church-logo.jpg">
-  <link rel="apple-touch-icon" href="./images/church-logo.jpg">
-
-  <script src="./js/qrcode.min.js"></script>
+  <title>مسابقة سفر التكوين ❤️</title>
 
   <style>
     * {
@@ -21,515 +13,291 @@
     }
 
     body {
-      font-family: 'Cairo', Tahoma, Arial, sans-serif;
-      background: #eef2f5;
       margin: 0;
       padding: 20px 10px;
-      direction: rtl;
-      text-align: right;
-      color: #2c3e50;
+      background: #eef2f5;
+      font-family: Arial, Tahoma, sans-serif;
+      color: #222;
     }
 
     .container {
       max-width: 600px;
       margin: auto;
-      background: #ffffff;
-      padding: 25px 20px;
+      background: white;
       border-radius: 15px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-      border-top: 6px solid #3498db;
+      padding: 20px;
+      border-top: 6px solid #1976d2;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     }
 
     .header-box {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 10px;
-      margin-bottom: 20px;
-      border-bottom: 2px dashed #e2e8f0;
-      padding-bottom: 15px;
-    }
-
-    .header-logo {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #3498db;
-      flex-shrink: 0;
-    }
-
-    .header-titles {
       text-align: center;
+      margin-bottom: 20px;
     }
 
-    h2 {
-      color: #1e3a8a;
-      font-weight: 700;
-      font-size: 20px;
-      margin: 0 0 4px 0;
+    .header-box img {
+      width: 90px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 10px;
     }
 
-    h4 {
-      color: #0284c7;
-      font-weight: 600;
-      font-size: 13px;
-      margin: 0;
+    .header-box h1 {
+      margin: 5px 0;
+      font-size: 24px;
+      color: #1976d2;
+    }
+
+    .header-box p {
+      margin: 5px 0;
+      color: #666;
     }
 
     .timer-box {
       position: sticky;
       top: 10px;
-      background: #e74c3c;
+      z-index: 10;
+      background: #d32f2f;
       color: white;
-      padding: 10px 15px;
-      border-radius: 10px;
       text-align: center;
-      font-size: 18px;
-      font-weight: 700;
-      z-index: 100;
+      padding: 12px;
+      border-radius: 10px;
       margin-bottom: 20px;
-    }
-
-    #timer {
-      font-size: 24px;
-      font-weight: 800;
-      direction: ltr;
-      display: inline-block;
-      min-width: 65px;
+      font-size: 22px;
+      font-weight: bold;
     }
 
     .form-group {
       margin-bottom: 20px;
-      background: #f8fafc;
-      padding: 15px;
-      border-radius: 10px;
-      border: 1px solid #e2e8f0;
     }
 
-    label.question-title {
+    .form-group > label {
       display: block;
-      margin-bottom: 10px;
-      font-weight: 700;
-      font-size: 15px;
-      color: #1e293b;
+      font-weight: bold;
+      margin-bottom: 8px;
+      font-size: 17px;
     }
 
     input[type="text"] {
       width: 100%;
       padding: 12px;
-      border: 1px solid #cbd5e1;
+      border: 1px solid #ccc;
       border-radius: 8px;
-      font-size: 15px;
-      font-family: inherit;
-      outline: none;
+      font-size: 16px;
     }
 
-    .options-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+    .question {
+      margin-bottom: 25px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .question-title {
+      font-weight: bold;
+      margin-bottom: 12px;
+      font-size: 17px;
+      line-height: 1.6;
     }
 
     .option-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      background: white;
-      padding: 10px 14px;
+      display: block;
+      padding: 11px;
+      margin: 7px 0;
+      border: 1px solid #ddd;
       border-radius: 8px;
-      border: 1px solid #e2e8f0;
+      cursor: pointer;
+      transition: 0.2s;
     }
 
-    .option-item input[type="radio"] {
-      width: 20px;
-      height: 20px;
-      accent-color: #3498db;
-      flex-shrink: 0;
+    .option-item:hover {
+      background: #f1f7ff;
+    }
+
+    .option-item input {
+      margin-left: 8px;
     }
 
     button {
       width: 100%;
-      background: #27ae60;
-      color: white;
       border: none;
+      background: #2e7d32;
+      color: white;
       padding: 14px;
-      font-size: 17px;
-      font-family: inherit;
       border-radius: 10px;
+      font-size: 18px;
+      font-weight: bold;
       cursor: pointer;
-      font-weight: 700;
-      margin-top: 15px;
     }
 
-    button:disabled {
-      background: #888;
-      cursor: not-allowed;
+    button:hover {
+      background: #256628;
+    }
+
+    #result {
+      display: none;
+      text-align: center;
+    }
+
+    #finishTitle {
+      color: #1976d2;
+      margin-bottom: 10px;
+    }
+
+    #scoreText {
+      font-size: 22px;
+      font-weight: bold;
+      margin: 15px 0;
     }
 
     #qr-container {
-      display: none;
-      text-align: center;
       margin-top: 20px;
-      padding: 25px 15px;
-      background: #f0fdf4;
-      border: 2px dashed #22c55e;
-      border-radius: 12px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background: #fff;
     }
 
     #qrcode {
       display: flex;
       justify-content: center;
-      margin: 18px auto;
-      min-height: 200px;
       align-items: center;
-    }
-
-    #qrcode svg,
-    #qrcode canvas,
-    #qrcode img {
-      border: 6px solid white;
-      border-radius: 10px;
-      max-width: 100%;
-      height: auto;
-      width: 220px;
+      overflow: auto;
     }
 
     .qr-error {
-      color: #b91c1c;
-      background: #fee2e2;
-      border: 1px solid #fecaca;
-      border-radius: 8px;
-      padding: 14px;
-      font-weight: 600;
+      color: #d32f2f;
+      font-weight: bold;
+      margin-top: 10px;
     }
 
-    html,
-    body {
-      max-width: 100%;
-      overflow-x: hidden;
-    }
-
-    @media (max-width: 400px) {
-      .header-box {
-        flex-direction: column;
-      }
-
-      .header-titles h2 {
-        font-size: 18px;
-      }
+    .note {
+      color: #777;
+      font-size: 14px;
+      line-height: 1.6;
+      margin-top: 15px;
     }
   </style>
 </head>
 
 <body>
 
-<div class="container">
+  <div class="container">
 
-  <!-- العداد -->
-  <div class="timer-box" id="timerBox">
-    الوقت المتبقي:
-    <span id="timer">10:00</span>
-  </div>
+    <div class="header-box">
+      <img src="./images/church-logo.jpg" alt="شعار الكنيسة">
 
-
-  <!-- الهيدر -->
-  <div class="header-box">
-
-    <img
-      src="./images/church-logo.jpg"
-      alt="لوجو الخدمة"
-      class="header-logo"
-    >
-
-    <div class="header-titles">
-      <h2>مسابقة درس الكتاب</h2>
-      <h4>اختبار الخدام ❤️</h4>
+      <h1>مسابقة سفر التكوين ❤️</h1>
+      <p>أجب عن الأسئلة قبل انتهاء الوقت</p>
     </div>
 
-  </div>
-
-
-  <form id="quizForm">
-
-    <!-- الاسم -->
-    <div class="form-group">
-
-      <label class="question-title">
-        الاسم:
-      </label>
-
-      <input
-        type="text"
-        id="name"
-        required
-        placeholder="اكتب اسمك"
-      >
-
+    <div class="timer-box">
+      الوقت المتبقي:
+      <span id="timer">10:00</span>
     </div>
 
+    <form id="quizForm">
 
-    <!-- المرحلة -->
-    <div class="form-group">
-
-      <label class="question-title">
-        المرحلة:
-      </label>
-
-      <input
-        type="text"
-        id="stage"
-        required
-        placeholder="مثال: خدمات متخصصه / منطقه / لجنه"
-      >
-
-    </div>
-
-
-    <!-- السؤال 1 -->
-    <div class="form-group">
-
-      <label class="question-title">
-        1. من هم الج7"
-            value="٣٠٠ ذراع طول و٥٠ ذراع عرض و٣٠ ذراع ارتفاع"
-          >
-          ٣٠٠ ذراع طول و٥٠ ذراع عرض و٣٠ ذراع ارتفاع
-        </label>
-
-        <label class="option-item">
-          <input
-            type="radio"
-            name="q7"
-            value="٣٠ ذراع طول و٣٠٠ ذراع عرض و٥٠٠ ذراع ارتفاع"
-          >
-          ٣٠ ذراع طول و٣٠٠ ذراع عرض و٥٠٠ ذراع ارتفاع
-        </label>
-
-        <label class="option-item">
-          <input
-            type="radio"
-            name="q7"
-            value="٥٠٠ ذراع ارتفاع و٥٠ ذراع عرض و٣٠ ذراع ارتفاع"
-          >
-          ٥٠٠ ذراع ارتفاع و٥٠ ذراع عرض و٣٠ ذراع ارتفاع
-        </label>
-
-        <label class="option-item">
-          <input
-            type="radio"
-            name="q7"
-            value="٥٠ ذراع طول و٧٠ ذراع عرض و٣٠ ذراع ارتفاع"
-          >
-          ٥٠ ذراع طول و٧٠ ذراع عرض و٣٠ ذراع ارتفاع
-        </label>
-
+      <div class="form-group">
+        <label for="name">الاسم</label>
+        <input type="text" id="name" placeholder="اكتب اسمك">
       </div>
-    </div>
 
+      <div class="form-group">
+        <label for="stage">الخدمة / المرحلة</label>
+        <input type="text" id="stage" placeholder="اكتب الخدمة أو المرحلة">
+      </div>
 
-    <!-- السؤال 8 -->
-    <div class="form-group">
-
-      <label class="question-title">
-        8. أول رجل تزوج امرأتين
-      </label>
-
-      <div class="options-group">
+      <!-- السؤال 1 -->
+      <div class="question">
+        <div class="question-title">
+          1) فنادى الرب الإله........ أين أنت؟
+        </div>
 
         <label class="option-item">
-          <input type="radio" name="q8" value="لامك">
-          لامك
+          <input type="radio" name="q1" value="آدم">
+          آدم
         </label>
 
         <label class="option-item">
-          <input type="radio" name="q8" value="قاين">
-          قاين
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q8" value="شيث">
-          شيث
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q8" value="نوح">
+          <input type="radio" name="q1" value="نوح">
           نوح
         </label>
 
+        <label class="option-item">
+          <input type="radio" name="q1" value="إبراهيم">
+          إبراهيم
+        </label>
+
+        <label class="option-item">
+          <input type="radio" name="q1" value="موسى">
+          موسى
+        </label>
       </div>
-    </div>
 
-
-    <!-- السؤال 9 -->
-    <div class="form-group">
-
-      <label class="question-title">
-        9. أولاد نوح
-      </label>
-
-      <div class="options-group">
+      <!-- السؤال 2 -->
+      <div class="question">
+        <div class="question-title">
+          2) استراح الله في:
+        </div>
 
         <label class="option-item">
-          <input type="radio" name="q9" value="سام وكنعان وحام">
-          سام وكنعان وحام
+          <input type="radio" name="q2" value="اليوم الأول">
+          اليوم الأول
         </label>
 
         <label class="option-item">
-          <input type="radio" name="q9" value="سام وحام ويافث">
-          سام وحام ويافث
+          <input type="radio" name="q2" value="اليوم الثالث">
+          اليوم الثالث
         </label>
 
         <label class="option-item">
-          <input type="radio" name="q9" value="حام وأنوش ويافث">
-          حام وأنوش ويافث
+          <input type="radio" name="q2" value="اليوم السابع">
+          اليوم السابع
         </label>
 
         <label class="option-item">
-          <input type="radio" name="q9" value="سام وحام ولامك">
-          سام وحام ولامك
+          <input type="radio" name="q2" value="اليوم السادس">
+          اليوم السادس
         </label>
-
       </div>
-    </div>
 
-
-    <!-- السؤال 10 -->
-    <div class="form-group">
-
-      <label class="question-title">
-        10. كام كان عمر نوح حين بدأ الطوفان؟
-      </label>
-
-      <div class="options-group">
+      <!-- السؤال 3 -->
+      <div class="question">
+        <div class="question-title">
+          3) تشتهر أرض الحويلة بـ:
+        </div>
 
         <label class="option-item">
-          <input type="radio" name="q10" value="٥٠٠ سنة">
-          ٥٠٠ سنة
+          <input type="radio" name="q3" value="الفضة">
+          الفضة
         </label>
 
         <label class="option-item">
-          <input type="radio" name="q10" value="٣٠٠ سنة">
-          ٣٠٠ سنة
+          <input type="radio" name="q3" value="الذهب">
+          الذهب
         </label>
 
         <label class="option-item">
-          <input type="radio" name="q10" value="٩٠٠ سنة">
-          ٩٠٠ سنة
+          <input type="radio" name="q3" value="الحديد">
+          الحديد
         </label>
 
         <label class="option-item">
-          <input type="radio" name="q10" value="٦٠٠ سنة">
-          ٦٠٠ سنة
+          <input type="radio" name="q3" value="النحاس">
+          النحاس
         </label>
-
       </div>
-    </div>
 
+      <!-- السؤال 4 -->
+      <div class="question">
+        <div class="question-title">
+          4) تقدمة هابيل كانت:
+        </div>
 
-    <button type="submit">
-      إنهاء واستخراج الـ QR Code
-    </button>
-
-  </form>
-
-
-  <div id="qr-container">
-
-    <h3
-      id="finishTitle"
-      style="color:#27ae60; margin-top:0;"
-    >
-      تم إنهاء المسابقة بنجاح!
-    </h3>
-
-    <p>
-      يرجى إظهار الشاشة للكنترول لمسح رمز الـ QR وتسجيل إجابتك ودرجتك.
-    </p>
-
-    <div id="scoreText"></div>
-
-    <div id="qrcode"></div>
-
-  </div>
-
-</div>
-
-
-<script>
-
-const correctAnswers = {
-
-  q1: "أبناء الذين ولدوا من تزوج أبناء شيث مع بنات قاين",
-
-  q2: "اليوم السابع",
-
-  q3: "الذهب",
-
-  q4: "أبكار غنم",
-
-  q5: "آدم",
-
-  q6: "أخنوخ",
-
-  q7: "٣٠٠ ذراع طول و٥٠ ذراع عرض و٣٠ ذراع ارتفاع",
-
-  q8: "لامك",
-
-  q9: "سام وحام ويافث",
-
-  q10: "٩٠٠ سنة"
-
-};
-
-
-const form =
-  document.getElementById("quizForm");
-
-const timerBox =
-  document.getElementById("timerBox");
-
-const timerDisplay =
-  document.getElementById("timer");
-
-const qrContainer =
-  document.getElementById("qr-container");
-
-const qrcodeEl =
-  document.getElementById("qrcode");
-
-const scoreText =
-  document.getElementById("scoreText");
-
-const finishTitle =
-  document.getElementById("finishTitle");
-
-
-let timeLeft = 600;
-
-let timerInterval = null;
-
-let submitted = false;
-
-
-function updateTimerDisplay() {
-
-  const minutes =
-    Math.floor(Math.max(timeLeft, 0) / 60);
-
-  const seconds =
-    Math.max(timeLeft, 0) % 60;
-
-  timerDisplay.textContent =
-    String(minutes).padStart(2, "0") +
-    ":" +
-    String(seconds).padStart(2, "0");
-}
-
-
-function stopTimer() {
+        <label class="option-item">
+          <input type="radio" name="q4" value="ثمار الأرض">
+          ث() {
 
   if (timerInterval !== null) {
 
