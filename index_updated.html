@@ -1,19 +1,9 @@
-ح<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>مسابقة درس الكتاب</title>
-
-  <link rel="manifest" href="./manifest.json">
-  <meta name="theme-color" content="#3498db">
-
-  <link rel="icon" href="./images/church-logo.jpg">
-  <link rel="apple-touch-icon" href="./images/church-logo.jpg">
-
-  <script src="./js/qrcode.min.js"></script>
 
   <style>
     * {
@@ -21,193 +11,173 @@
     }
 
     body {
-      font-family: 'Cairo', Tahoma, Arial, sans-serif;
-      background: #eef2f5;
       margin: 0;
-      padding: 20px 10px;
-      direction: rtl;
-      text-align: right;
-      color: #2c3e50;
+      font-family: Arial, Tahoma, sans-serif;
+      background: #f5f7fa;
+      color: #222;
     }
 
     .container {
-      max-width: 600px;
+      max-width: 800px;
       margin: auto;
-      background: #ffffff;
-      padding: 25px 20px;
-      border-radius: 15px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      padding: 20px;
+    }
+
+    .header {
+      background: white;
       border-top: 6px solid #3498db;
-    }
-
-    .header-box {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 10px;
-      margin-bottom: 20px;
-      border-bottom: 2px dashed #e2e8f0;
-      padding-bottom: 15px;
-    }
-
-    .header-logo {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #3498db;
-      flex-shrink: 0;
-    }
-
-    .header-titles {
+      border-bottom: 3px solid #3498db;
+      border-radius: 15px;
+      padding: 20px;
       text-align: center;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
     }
 
-    h2 {
-      color: #1e3a8a;
-      font-weight: 700;
-      font-size: 20px;
-      margin: 0 0 4px 0;
+    .header img {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      margin-bottom: 10px;
     }
 
-    h4 {
-      color: #0284c7;
-      font-weight: 600;
-      font-size: 13px;
-      margin: 0;
+    .header h1 {
+      margin: 5px 0;
+      color: #2c3e50;
+      font-size: 28px;
     }
 
-    .timer-box {
+    .header p {
+      margin: 5px 0;
+      color: #777;
+      font-size: 18px;
+    }
+
+    .timer {
       position: sticky;
       top: 10px;
+      z-index: 10;
       background: #e74c3c;
       color: white;
-      padding: 10px 15px;
-      border-radius: 10px;
       text-align: center;
-      font-size: 18px;
-      font-weight: 700;
-      z-index: 100;
-      margin-bottom: 20px;
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-      background: #f8fafc;
-      padding: 15px;
-      border-radius: 10px;
-      border: 1px solid #e2e8f0;
-    }
-
-    label.question-title {
-      display: block;
-      margin-bottom: 10px;
-      font-weight: 700;
-      font-size: 15px;
-      color: #1e293b;
-    }
-
-    input[type="text"] {
-      width: 100%;
       padding: 12px;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-      font-size: 15px;
-      font-family: inherit;
-      outline: none;
+      border-radius: 10px;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
     }
 
-    .options-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .option-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 600;
-      cursor: pointer;
+    form {
       background: white;
-      padding: 10px 14px;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    }
+
+    .question {
+      margin-bottom: 25px;
+      padding: 18px;
+      background: #f8f9fa;
+      border-radius: 12px;
+      border-right: 5px solid #3498db;
+    }
+
+    .question-title {
+      display: block;
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    label.option {
+      display: block;
+      background: white;
+      padding: 10px;
+      margin: 8px 0;
       border-radius: 8px;
-      border: 1px solid #e2e8f0;
+      cursor: pointer;
+      border: 1px solid #ddd;
+      transition: 0.2s;
     }
 
-    .option-item input[type="radio"] {
-      width: 20px;
-      height: 20px;
-      accent-color: #3498db;
-      flex-shrink: 0;
+    label.option:hover {
+      background: #eef7ff;
+      border-color: #3498db;
     }
 
-    button {
+    input[type="radio"] {
+      margin-left: 8px;
+    }
+
+    .info-input {
+      margin-bottom: 20px;
+    }
+
+    .info-input label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .info-input input {
       width: 100%;
+      padding: 13px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: inherit;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
       background: #27ae60;
       color: white;
-      border: none;
-      padding: 14px;
-      font-size: 17px;
-      font-family: inherit;
-      border-radius: 10px;
+      font-size: 20px;
+      font-weight: bold;
       cursor: pointer;
-      font-weight: 700;
-      margin-top: 15px;
     }
 
-    #qr-container {
+    .submit-btn:hover {
+      background: #219150;
+    }
+
+    #result {
       display: none;
       text-align: center;
-      margin-top: 20px;
-      padding: 25px 15px;
-      background: #f0fdf4;
-      border: 2px dashed #22c55e;
-      border-radius: 12px;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    }
+
+    #finishTitle {
+      font-size: 26px;
+      margin-bottom: 15px;
+    }
+
+    #score {
+      font-size: 30px;
+      font-weight: bold;
+      margin: 20px 0;
+      color: #27ae60;
     }
 
     #qrcode {
+      margin: 20px auto;
       display: flex;
       justify-content: center;
-      margin: 18px auto;
-      min-height: 200px;
       align-items: center;
     }
 
-    #qrcode svg,
-    #qrcode canvas,
-    #qrcode img {
-      border: 6px solid white;
-      border-radius: 10px;
-      max-width: 100%;
-      height: auto;
-      width: 220px;
-    }
-
-    .qr-error {
-      color: #b91c1c;
-      background: #fee2e2;
-      border: 1px solid #fecaca;
-      border-radius: 8px;
-      padding: 14px;
-      font-weight: 600;
-    }
-
-    html,
-    body {
-      max-width: 100%;
-      overflow-x: hidden;
-    }
-
-    @media (max-width: 400px) {
-      .header-box {
-        flex-direction: column;
-      }
-
-      .header-titles h2 {
-        font-size: 18px;
-      }
+    #qrError {
+      color: #e74c3c;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -216,271 +186,687 @@
 
 <div class="container">
 
-  <div class="timer-box" id="timerBox">
-    الوقت المتبقي:
-    <span id="timer">01:30</span>
+  <div class="header">
+    <img src="./images/church-logo.jpg" alt="Church Logo">
+
+    <h1>مسابقة درس الكتاب</h1>
+    <p>اختبار الخدام ❤️</p>
   </div>
 
-  <div class="header-box">
-
-    <img
-      src="./images/church-logo.jpg"
-      alt="لوجو الخدمة"
-      class="header-logo"
-    >
-
-    <div class="header-titles">
-      <h2>مسابقة درس الكتاب</h2>
-      <h4>اختبار الخدام ❤️</h4>
-    </div>
-
+  <div class="timer" id="timer">
+    01:30
   </div>
 
   <form id="quizForm">
 
-    <!-- الاسم -->
-    <div class="form-group">
-
-      <label class="question-title">
-        الاسم:
-      </label>
-
+    <div class="info-input">
+      <label for="name">الاسم:</label>
       <input
         type="text"
         id="name"
         required
         placeholder="اكتب اسمك"
       >
-
     </div>
 
-    <!-- المنطقة / الخدمة / اللجنة -->
-    <div class="form-group">
-
-      <label class="question-title">
-        المنطقة / الخدمة / اللجنة:
-      </label>
-
+    <div class="info-input">
+      <label for="stage">المنطقة / الخدمة / اللجنة:</label>
       <input
         type="text"
         id="stage"
         required
         placeholder="اكتب المنطقة أو الخدمة أو اللجنة"
       >
-
     </div>
+
 
     <!-- السؤال 1 -->
-    <div class="form-group">
+    <div class="question">
+      <span class="question-title">
+        1- أول إنسان خلقه الله هو........
+      </span>
 
-      <label class="question-title">
-        1. من هو أول إنسان خلقه الله؟
+      <label class="option">
+        <input type="radio" name="q1" value="آدم">
+        آدم
       </label>
 
-      <div class="options-group">
+      <label class="option">
+        <input type="radio" name="q1" value="نوح">
+        نوح
+      </label>
 
-        <label class="option-item">
-          <input type="radio" name="q1" value="آدم">
-          آدم
-        </label>
+      <label class="option">
+        <input type="radio" name="q1" value="هابيل">
+        هابيل
+      </label>
 
-        <label class="option-item">
-          <input type="radio" name="q1" value="نوح">
-          نوح
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q1" value="إبراهيم">
-          إبراهيم
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q1" value="موسى">
-          موسى
-        </label>
-
-      </div>
+      <label class="option">
+        <input type="radio" name="q1" value="قايين">
+        قايين
+      </label>
     </div>
+
 
     <!-- السؤال 2 -->
-    <div class="form-group">
+    <div class="question">
+      <span class="question-title">
+        2- ماذا قال الله للحية بعد سقوط الإنسان؟
+      </span>
 
-      <label class="question-title">
-        2. ماذا قال الله للحية بعد سقوط الإنسان؟
+      <label class="option">
+        <input type="radio" name="q2" value="على بطنك تسعين وترابًا تأكلين">
+        على بطنك تسعين وترابًا تأكلين
       </label>
 
-      <div class="options-group">
+      <label class="option">
+        <input type="radio" name="q2" value="ملعونة أنت من جميع الحيوانات">
+        ملعونة أنت من جميع الحيوانات
+      </label>
 
-        <label class="option-item">
-          <input type="radio" name="q2" value="تأكلين من كل الأشجار">
-          تأكلين من كل الأشجار
-        </label>
+      <label class="option">
+        <input type="radio" name="q2" value="تكونين ضعيفة">
+        تكونين ضعيفة
+      </label>
 
-        <label class="option-item">
-          <input type="radio" name="q2" value="على بطنك تسعين وترابًا تأكلين">
-          على بطنك تسعين وترابًا تأكلين
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q2" value="تكونين عظيمة">
-          تكونين عظيمة
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q2" value="تسكنين السماء">
-          تسكنين السماء
-        </label>
-
-      </div>
+      <label class="option">
+        <input type="radio" name="q2" value="تموتين">
+        تموتين
+      </label>
     </div>
+
 
     <!-- السؤال 3 -->
-    <div class="form-group">
+    <div class="question">
+      <span class="question-title">
+        3- ماذا قدم هابيل من قرابين؟
+      </span>
 
-      <label class="question-title">
-        3. ماذا قدم هابيل من قرابين؟
+      <label class="option">
+        <input type="radio" name="q3" value="ثمار الأرض">
+        ثمار الأرض
       </label>
 
-      <div class="options-group">
+      <label class="option">
+        <input type="radio" name="q3" value="أبكار غنم">
+        أبكار غنم
+      </label>
 
-        <label class="option-item">
-          <input type="radio" name="q3" value="أبكار غنم">
-          أبكار غنم
-        </label>
+      <label class="option">
+        <input type="radio" name="q3" value="قمح">
+        قمح
+      </label>
 
-        <label class="option-item">
-          <input type="radio" name="q3" value="ثمار الأرض">
-          ثمار الأرض
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q3" value="ذهب وفضة">
-          ذهب وفضة
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q3" value="خبز">
-          خبز
-        </label>
-
-      </div>
+      <label class="option">
+        <input type="radio" name="q3" value="زيت">
+        زيت
+      </label>
     </div>
+
 
     <!-- السؤال 4 -->
-    <div class="form-group">
+    <div class="question">
+      <span class="question-title">
+        4- من الابن الذي وُلد لآدم وحواء بعد هابيل؟
+      </span>
 
-      <label class="question-title">
-        4. من هو الابن الذي وُلد لآدم وحواء بعد هابيل؟
+      <label class="option">
+        <input type="radio" name="q4" value="شيث">
+        شيث
       </label>
 
-      <div class="options-group">
+      <label class="option">
+        <input type="radio" name="q4" value="أنوش">
+        أنوش
+      </label>
 
-        <label class="option-item">
-          <input type="radio" name="q4" value="قايين">
-          قايين
-        </label>
+      <label class="option">
+        <input type="radio" name="q4" value="قينان">
+        قينان
+      </label>
 
-        <label class="option-item">
-          <input type="radio" name="q4" value="هابيل">
-          هابيل
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q4" value="شيث">
-          شيث
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q4" value="أخنوخ">
-          أخنوخ
-        </label>
-
-      </div>
+      <label class="option">
+        <input type="radio" name="q4" value="مهللئيل">
+        مهللئيل
+      </label>
     </div>
+
 
     <!-- السؤال 5 -->
-    <div class="form-group">
+    <div class="question">
+      <span class="question-title">
+        5- من سار مع الله ولم يوجد لأن الله أخذه؟
+      </span>
 
-      <label class="question-title">
-        5. من هو الرجل الذي سار مع الله ولم يوجد لأن الله أخذه؟
+      <label class="option">
+        <input type="radio" name="q5" value="نوح">
+        نوح
       </label>
 
-      <div class="options-group">
+      <label class="option">
+        <input type="radio" name="q5" value="أخنوخ">
+        أخنوخ
+      </label>
 
-        <label class="option-item">
-          <input type="radio" name="q5" value="نوح">
-          نوح
-        </label>
+      <label class="option">
+        <input type="radio" name="q5" value="إبراهيم">
+        إبراهيم
+      </label>
 
-        <label class="option-item">
-          <input type="radio" name="q5" value="إبراهيم">
-          إبراهيم
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q5" value="موسى">
-          موسى
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q5" value="أخنوخ">
-          أخنوخ
-        </label>
-
-      </div>
+      <label class="option">
+        <input type="radio" name="q5" value="إيليا">
+        إيليا
+      </label>
     </div>
+
 
     <!-- السؤال 6 -->
-    <div class="form-group">
+    <div class="question">
+      <span class="question-title">
+        6- من هم أبناء الله في تكوين 6 بحسب التفسير التقليدي؟
+      </span>
 
-      <label class="question-title">
-        6. من هم أبناء الله في تكوين 6 بحسب التفسير التقليدي؟
+      <label class="option">
+        <input
+          type="radio"
+          name="q6"
+          value="أبناء الذين ولدوا من تزوج أبناء شيث مع بنات قايين"
+        >
+        أبناء الذين ولدوا من تزوج أبناء شيث مع بنات قايين
       </label>
 
-      <div class="options-group">
+      <label class="option">
+        <input
+          type="radio"
+          name="q6"
+          value="أبناء قايين"
+        >
+        أبناء قايين
+      </label>
 
-        <label class="option-item">
-          <input
-            type="radio"
-            name="q6"
-            value="أبناء الذين ولدوا من تزوج أبناء شيث مع بنات قايين"
-          >
-          أبناء الذين ولدوا من تزوج أبناء شيث مع بنات قايين
-        </label>
+      <label class="option">
+        <input
+          type="radio"
+          name="q6"
+          value="أبناء نوح"
+        >
+        أبناء نوح
+      </label>
 
-        <label class="option-item">
-          <input type="radio" name="q6" value="أبناء نوح">
-          أبناء نوح
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q6" value="أبناء قايين">
-          أبناء قايين
-        </label>
-
-        <label class="option-item">
-          <input type="radio" name="q6" value="الملائكة">
-          الملائكة
-        </label>
-
-      </div>
+      <label class="option">
+        <input
+          type="radio"
+          name="q6"
+          value="الملائكة"
+        >
+        الملائكة
+      </label>
     </div>
 
-    <!-- السؤال 7 -->
-    <div class="form-group">
 
-      <label class="question-title">
-        7. كم كان عمر نوح عندما بدأ الطوفان؟
+    <!-- السؤال 7 -->
+    <div class="question">
+      <span class="question-title">
+        7- كم كان عمر نوح عندما بدأ الطوفان؟
+      </span>
+
+      <label class="option">
+        <input type="radio" name="q7" value="500 سنة">
+        ٥٠٠ سنة
       </label>
 
-      <div class="options-group">
+      <label class="option">
+        <input type="radio" name="q7" value="600 سنة">
+        ٦٠٠ سنة
+      </label>
 
-        <label class="option-item">
-          <input type="radio" name="q7" value="٣٠٠ سنة">
-          ٣٠٠ سنة
-        </label>
+      <label class="option">
+        <input type="radio" name="q7" value="700 سنة">
+        ٧٠٠ سنة
+      </label>
 
-        <label class="option-item">
+      <label class="option">
+        <input type="radio" name="q7" value="950 سنة">
+        ٩٥٠ سنة
+      </label>
+    </div>
+
+
+    <!-- السؤال 8 -->
+    <div class="question">
+      <span class="question-title">
+        8- كم يومًا استمر الطوفان على الأرض؟
+      </span>
+
+      <label class="option">
+        <input type="radio" name="q8" value="40 يوم">
+        ٤٠ يوم
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q8" value="100 يوم">
+        ١٠٠ يوم
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q8" value="150 يوم">
+        ١٥٠ يوم
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q8" value="200 يوم">
+        ٢٠٠ يوم
+      </label>
+    </div>
+
+
+    <!-- السؤال 9 -->
+    <div class="question">
+      <span class="question-title">
+        9- ما أبعاد فلك نوح؟
+      </span>
+
+      <label class="option">
+        <input
+          type="radio"
+          name="q9"
+          value="300 ذراع طول و50 ذراع عرض و30 ذراع ارتفاع"
+        >
+        ٣٠٠ ذراع طول و٥٠ ذراع عرض و٣٠ ذراع ارتفاع
+      </label>
+
+      <label class="option">
+        <input
+          type="radio"
+          name="q9"
+          value="200 ذراع طول و50 ذراع عرض و30 ذراع ارتفاع"
+        >
+        ٢٠٠ ذراع طول و٥٠ ذراع عرض و٣٠ ذراع ارتفاع
+      </label>
+
+      <label class="option">
+        <input
+          type="radio"
+          name="q9"
+          value="300 ذراع طول و30 ذراع عرض و50 ذراع ارتفاع"
+        >
+        ٣٠٠ ذراع طول و٣٠ ذراع عرض و٥٠ ذراع ارتفاع
+      </label>
+
+      <label class="option">
+        <input
+          type="radio"
+          name="q9"
+          value="150 ذراع طول و50 ذراع عرض و30 ذراع ارتفاع"
+        >
+        ١٥٠ ذراع طول و٥٠ ذراع عرض و٣٠ ذراع ارتفاع
+      </label>
+    </div>
+
+
+    <!-- السؤال 10 -->
+    <div class="question">
+      <span class="question-title">
+        10- من هو والد نوح؟
+      </span>
+
+      <label class="option">
+        <input type="radio" name="q10" value="لامك">
+        لامك
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q10" value="متوشالح">
+        متوشالح
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q10" value="شيث">
+        شيث
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q10" value="أخنوخ">
+        أخنوخ
+      </label>
+    </div>
+
+
+    <!-- السؤال 11 -->
+    <div class="question">
+      <span class="question-title">
+        11- من هم أبناء نوح؟
+      </span>
+
+      <label class="option">
+        <input type="radio" name="q11" value="سام وحام ويافث">
+        سام وحام ويافث
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q11" value="قايين وهابيل وشيث">
+        قايين وهابيل وشيث
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q11" value="إبراهيم وإسحاق ويعقوب">
+        إبراهيم وإسحاق ويعقوب
+      </label>
+
+      <label class="option">
+        <input type="radio" name="q11" value="شيث وأنوش وقينان">
+        شيث وأنوش وقينان
+      </label>
+    </div>
+
+
+    <button type="button" class="submit-btn" onclick="submitQuiz()">
+      إنهاء المسابقة
+    </button>
+
+  </form>
+
+
+  <div id="result">
+
+    <div id="finishTitle">
+      تم إنهاء المسابقة ❤️
+    </div>
+
+    <div id="score"></div>
+
+    <p>
+      امسح رمز الـ QR لإرسال نتيجتك.
+    </p>
+
+    <div id="qrcode"></div>
+
+    <div id="qrError"></div>
+
+  </div>
+
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+
+<script>
+
+  const correctAnswers = {
+    q1: "آدم",
+    q2: "على بطنك تسعين وترابًا تأكلين",
+    q3: "أبكار غنم",
+    q4: "شيث",
+    q5: "أخنوخ",
+    q6: "أبناء الذين ولدوا من تزوج أبناء شيث مع بنات قايين",
+    q7: "600 سنة",
+    q8: "150 يوم",
+    q9: "300 ذراع طول و50 ذراع عرض و30 ذراع ارتفاع",
+    q10: "لامك",
+    q11: "سام وحام ويافث"
+  };
+
+
+  let timeLeft = 90;
+  let timerInterval = null;
+  let submitted = false;
+
+
+  const timerDisplay = document.getElementById("timer");
+
+
+  function updateTimerDisplay() {
+
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+
+    timerDisplay.textContent =
+      "0" +
+      minutes +
+      ":" +
+      (seconds < 10 ? "0" + seconds : seconds);
+
+  }
+
+
+  function startTimer() {
+
+    updateTimerDisplay();
+
+    timerInterval = setInterval(function () {
+
+      timeLeft--;
+
+      if (timeLeft <= 0) {
+
+        timeLeft = 0;
+
+        updateTimerDisplay();
+
+        document.getElementById("finishTitle").textContent =
+          "انتهى الوقت المحدد!";
+
+        document.getElementById("finishTitle").style.color =
+          "#e74c3c";
+
+        submitQuiz();
+
+        return;
+      }
+
+      updateTimerDisplay();
+
+    }, 1000);
+
+  }
+
+
+  function stopTimer() {
+
+    if (timerInterval) {
+
+      clearInterval(timerInterval);
+
+      timerInterval = null;
+
+    }
+
+  }
+
+
+  function getAnswer(question) {
+
+    const selected =
+      document.querySelector(
+        'input[name="' + question + '"]:checked'
+      );
+
+    return selected ? selected.value : "لم يتم الإجابة";
+
+  }
+
+
+  function submitQuiz() {
+
+    if (submitted) return;
+
+    submitted = true;
+
+    stopTimer();
+
+
+    const name =
+      document.getElementById("name").value.trim() ||
+      "بدون اسم";
+
+
+    const stage =
+      document.getElementById("stage").value.trim() ||
+      "غير محدد";
+
+
+    let score = 0;
+
+
+    Object.keys(correctAnswers).forEach(function(question) {
+
+      const answer = getAnswer(question);
+
+      if (answer === correctAnswers[question]) {
+
+        score++;
+
+      }
+
+    });
+
+
+    let resultText =
+      "الاسم: " + name + "\n" +
+      "المنطقة / الخدمة / اللجنة: " + stage + "\n" +
+      "الدرجة: " + score + "/11\n" +
+      "----------------\n";
+
+
+    for (let i = 1; i <= 11; i++) {
+
+      resultText +=
+        "س" + i + ": " +
+        getAnswer("q" + i) +
+        "\n";
+
+    }
+
+
+    document.getElementById("quizForm").style.display =
+      "none";
+
+    document.getElementById("timer").style.display =
+      "none";
+
+    document.getElementById("result").style.display =
+      "block";
+
+    document.getElementById("score").textContent =
+      "درجتك: " + score + " / 11";
+
+
+    const qrContainer =
+      document.getElementById("qrcode");
+
+    qrContainer.innerHTML = "";
+
+    document.getElementById("qrError").textContent = "";
+
+
+    try {
+
+      if (typeof qrcode === "undefined") {
+
+        throw new Error("QR library not loaded");
+
+      }
+
+
+      qrcode.stringToBytes =
+        qrcode.stringToBytesFuncs["UTF-8"];
+
+
+      const qr = qrcode(0, "M");
+
+      qr.addData(resultText, "Byte");
+
+      qr.make();
+
+
+      const qrSvg =
+        qr.createSvgTag({
+          scalable: true,
+          cellSize: 5,
+          margin: 4
+        });
+
+
+      qrContainer.innerHTML = qrSvg;
+
+
+      /*
+        رابط استقبال البيانات
+      */
+      const scannerURL =
+        "https://script.google.com/macros/s/AKfycbwfqwnUDieOCOScxoXWHzxrrALHOKxLIQvKvEx9W3poPdsxka1kVF8U3zVKXKbcIsM/exec";
+
+
+      /*
+        الرابط الموجود داخل الـ QR
+      */
+      const qrData =
+        scannerURL +
+        "?data=" +
+        encodeURIComponent(resultText);
+
+
+      const qr2 = qrcode(0, "M");
+
+      qr2.addData(qrData, "Byte");
+
+      qr2.make();
+
+
+      qrContainer.innerHTML =
+        qr2.createSvgTag({
+          scalable: true,
+          cellSize: 5,
+          margin: 4
+        });
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      document.getElementById("qrError").textContent =
+        "تعذر إنشاء رمز الـQR. تأكدي من وجود اتصال بالإنترنت لتحميل مكتبة الـQR.";
+
+    }
+
+  }
+
+
+  startTimer();
+
+</script>
+
+
+<script>
+
+  /*
+    Service Worker
+  */
+
+  if ("serviceWorker" in navigator) {
+
+    window.addEventListener("load", function() {
+
+      navigator.serviceWorker
+        .register("./service-worker.js")
+        .catch(function(error) {
+
+          console.error(
+            "Service Worker Error:",
+            error
+          );
+
+        });
+
+    });
+
+  }
+
+</script>
+
+</body>
+</html>el class="option-item">
           <input type="radio" name="q7" value="٤٠٠ سنة">
           ٤٠٠ سنة
         </label>
