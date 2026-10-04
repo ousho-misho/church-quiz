@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مسابقة سفر التكوين ❤️</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px 10px;
+      background: #eef2f5;
+      font-family: Arial, Tahoma, sans-serif;
+      color: #222;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      border-top: 6px solid #1976d2;
+      box-shadow: 0 4px 15px rgba(0,0,0,.08);
+    }
+
+    .header-box {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .header-box img {
+      width: 90px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .header-box h1 {
+      color: #1976d2;
+      margin: 10px 0 5px;
+    }
+
+    .header-box p {
+      color: #666;
+      margin: 5px 0;
+    }
+
+    .timer-box {
+      background: #d32f2f;
+      color: white;
+      text-align: center;
+      padding: 14px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .question {
+      margin-bottom: 25px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .question-title {
+      font-weight: bold;
+      font-size: 17px;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .option-item {
+      display: block;
+      padding: 11px;
+      margin: 7px 0;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .option-item input {
+      margin-left: 8px;
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      background: #2e7d32;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 19px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    #result {
+      display: none;
+      text-align: center;
+    }
+
+    #scoreText {
+      font-size: 23px;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+
+    #qr-container {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+    }
+
+    #qrcode {
+      display: flex;
+      justify-content: center;
+      overflow: auto;
+    }
+
+    #qrError {
+      color: #d32f2f;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="header-box">
+    <img src="./images/church-logo.jpg" alt="شعار الكنيسة">
+    <h1>مسابقة سفر التكوين ❤️</h1>
+    <p>أمامك 10 دقائق للإجابة</p>
+  </div>
+
+  <div class="timer-box">
+    الوقت المتبقي:
+    <span id="timer">10:00</span>
+  </div>
+
+  <form id="quizForm">
+
+    <div class="form-group">
+      <label for="name">الاسم</label>
+      <input type="text" id="name" placeholder="اكتب اسمك">
+    </div>
+
+    <div class="form-group">
+      <label for="stage">الخدمة / المرحلة</label>
+      <input type="text" id="stage" placeholder="اكتب الخدمة أو المرحلة">
+    </div>
+
+
+    <!-- 1 -->
+    <div class="question">
+      <div class="question-title">
+        1) من هم الجبابرة؟
+      </div>
+
+      <label class="option-item">
+        <input type="radio" name="q1"
+          value="أبناء آدم وحواء">
+        أبناء آدم وحواء
+      </label>
+
+      <label class="option-item">
+        <input type="radio" name="q1"
+          value="أبناء الذين ولدوا من تزوج أبناء شيث مع بنات قايين">
+        أبناء الذين ولدوا من تزوج أبناء شيث مع بنات قايين
+      </label>
+
+      <label class="option-item">
+        <input type="radio" name="q1"
+          value="أبناء نوح">
+        أبناء نوح
+      </label>
+
+      <label class="option-item">
+        <input type="radio" name="q1"
+          value="أبناء إبراهيم">
+        أبناء إبراهيم
+      </label>
+    </div>
+
+
+    <!-- 2 -->
+    <div class="question">
+      <div class="question-title">
+        2) استراح الله في:
+      </div>
+
+      <label class="option-item">
+        <input type="radio" name="q2"
+          value="اليوم الأول">
+        اليوم الأول
+      </label>
+
+      <label class="option-item">
+        <input type="radio" name="q2"
+          value="اليوم الثالث">
+        اليوم الثالث
+      </label>
+
+      <label class="option-item">
+        <input type="radio" name="q2"
+          value="اليوم السابع">
+        اليوم السابع
+      </label>
+
+      <label class="option-item">
+        <input type="radio" name="q2"
+          value="اليوم السادس">
+        اليوم السادس
+      </label>
+    </div>
+
+
+    <!-- 3 -->
+    <div class="question">
+      <div class="question-title">
+        3) تشتهر أرض الحويلة بـ:
+      </div>
+
+      <label class="option-item">
+        <input type="radio" name="q3"
+          value="الفضة">
+        الفضة
+      </label>
+
+      <label class="option-item">
+        <input type="radio" name="q3"
+          value="الذهب">
+        الذهب
+      </label>
+
+      <label class="option-item">
+        <input type="radio" name="q3"
+          value="الحديد">
+        الحديد
+      </label>
+
+      <label class="option-item">
+        <input type="radio" name="q3"
+          value="النحاس">
+        النحاس
+      </label>
+    </div>
+
+
+    <!-- 4 -->
+    <div class="question">
+      <div class="question-title">
+        4) تقدمة هابيل كانت:
+      </div>
+
+      <label class="option-item">
+        <input type="radio" name="q4"
+          value="ثمار الأرض">
+        ثمار الأرض
+      </label>
+
+      <label class="option-item">
+        <input type="radio" name="q4"
+          value="أبكار غنم">
+        أبكار غنم
+      </label>
+
+      <label class="option-item">
+        <input type="radio" name="q4"
+          value="ذهب وفضة">
+        ذهب وفضة
+     
