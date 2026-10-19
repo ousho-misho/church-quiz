@@ -1,18 +1,14 @@
 <!-- TEST-2026 -->
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>امتحان درس الكتاب</title>
-
   <meta name="theme-color" content="#0d6efd">
   <link rel="manifest" href="./manifest.json">
   <link rel="icon" href="./images/church-logo.jpg">
   <link rel="apple-touch-icon" href="./images/church-logo.jpg">
-
   <script src="./js/qrcode.min.js"></script>
 
   <style>
@@ -41,13 +37,8 @@
       padding: 5px;
     }
 
-    .header h1 {
-      margin: 10px 0 5px;
-    }
-
-    .header p {
-      margin: 0;
-    }
+    .header h1 { margin: 10px 0 5px; }
+    .header p { margin: 0; }
 
     .container {
       max-width: 700px;
@@ -75,8 +66,7 @@
       font-weight: bold;
     }
 
-    .info,
-    .question {
+    .info, .question {
       background: white;
       padding: 18px;
       border-radius: 15px;
@@ -112,13 +102,8 @@
       line-height: 1.6;
     }
 
-    label:hover {
-      background: #e2e6ea;
-    }
-
-    label input[type="radio"] {
-      margin-left: 8px;
-    }
+    label:hover { background: #e2e6ea; }
+    label input[type="radio"] { margin-left: 8px; }
 
     #submitBtn {
       width: 100%;
@@ -134,9 +119,7 @@
       margin-bottom: 30px;
     }
 
-    #submitBtn:hover {
-      background: #157347;
-    }
+    #submitBtn:hover { background: #157347; }
 
     #submitBtn:disabled {
       background: #777;
@@ -178,7 +161,6 @@
 </head>
 
 <body>
-
   <div class="header">
     <img src="./images/church-logo.jpg" alt="شعار الكنيسة">
     <h1>مسابقة درس الكتاب</h1>
@@ -186,367 +168,116 @@
   </div>
 
   <div class="container">
-
-    <!-- المؤقت -->
     <div class="timer">
       ⏱️ الوقت المتبقي:
       <span id="timer">10:00</span>
     </div>
 
     <div id="quizArea">
-
-      <!-- البيانات -->
       <div class="info">
-
         <label for="name">الاسم</label>
-
-        <input
-          type="text"
-          id="name"
-          placeholder="اكتب اسمك"
-        >
+        <input type="text" id="name" placeholder="اكتب اسمك">
 
         <label for="service">اسم الخدمة</label>
-
-        <input
-          type="text"
-          id="service"
-          placeholder="اكتب اسم الخدمة"
-        >
-
+        <input type="text" id="service" placeholder="اكتب اسم الخدمة">
       </div>
 
-
       <form id="quizForm">
-
-        <!-- السؤال 1 -->
         <div class="question">
           <h3>1) من هم الجبابرة؟</h3>
-
-          <label>
-            <input
-              type="radio"
-              name="q1"
-              value="أبناء الذين ولدوا من تزوج أبناء شيث مع بنات قاين"
-            >
-            أبناء الذين ولدوا من تزوج أبناء شيث مع بنات قاين
-          </label>
-
-          <label>
-            <input
-              type="radio"
-              name="q1"
-              value="أبناء الذين ولدوا من تزوج بنات شيث مع أولاد قاين"
-            >
-            أبناء الذين ولدوا من تزوج بنات شيث مع أولاد قاين
-          </label>
-
-          <label>
-            <input
-              type="radio"
-              name="q1"
-              value="أبناء آدم وحواء"
-            >
-            أبناء آدم وحواء
-          </label>
-
-          <label>
-            <input
-              type="radio"
-              name="q1"
-              value="أبناء لامك وامرأتين صلة وعادة"
-            >
-            أبناء لامك وامرأتين صلة وعادة
-          </label>
+          <label><input type="radio" name="q1" value="أبناء الذين ولدوا من تزوج أبناء شيث مع بنات قاين"> أبناء الذين ولدوا من تزوج أبناء شيث مع بنات قاين</label>
+          <label><input type="radio" name="q1" value="أبناء الذين ولدوا من تزوج بنات شيث مع أولاد قاين"> أبناء الذين ولدوا من تزوج بنات شيث مع أولاد قاين</label>
+          <label><input type="radio" name="q1" value="أبناء آدم وحواء"> أبناء آدم وحواء</label>
+          <label><input type="radio" name="q1" value="أبناء لامك وامرأتين صلة وعادة"> أبناء لامك وامرأتين صلة وعادة</label>
         </div>
 
-
-        <!-- السؤال 2 -->
         <div class="question">
           <h3>2) استراح الله في</h3>
-
-          <label>
-            <input type="radio" name="q2" value="اليوم الخامس">
-            اليوم الخامس
-          </label>
-
-          <label>
-            <input type="radio" name="q2" value="اليوم السابع">
-            اليوم السابع
-          </label>
-
-          <label>
-            <input type="radio" name="q2" value="اليوم الثالث">
-            اليوم الثالث
-          </label>
-
-          <label>
-            <input type="radio" name="q2" value="اليوم الأول">
-            اليوم الأول
-          </label>
+          <label><input type="radio" name="q2" value="اليوم الخامس"> اليوم الخامس</label>
+          <label><input type="radio" name="q2" value="اليوم السابع"> اليوم السابع</label>
+          <label><input type="radio" name="q2" value="اليوم الثالث"> اليوم الثالث</label>
+          <label><input type="radio" name="q2" value="اليوم الأول"> اليوم الأول</label>
         </div>
 
-
-        <!-- السؤال 3 -->
         <div class="question">
           <h3>3) تشتهر أرض الحويلة بـ</h3>
-
-          <label>
-            <input type="radio" name="q3" value="الخضرة">
-            الخضرة
-          </label>
-
-          <label>
-            <input type="radio" name="q3" value="الجبال">
-            الجبال
-          </label>
-
-          <label>
-            <input type="radio" name="q3" value="الذهب">
-            الذهب
-          </label>
-
-          <label>
-            <input type="radio" name="q3" value="النحاس">
-            النحاس
-          </label>
+          <label><input type="radio" name="q3" value="الخضرة"> الخضرة</label>
+          <label><input type="radio" name="q3" value="الجبال"> الجبال</label>
+          <label><input type="radio" name="q3" value="الذهب"> الذهب</label>
+          <label><input type="radio" name="q3" value="النحاس"> النحاس</label>
         </div>
 
-
-        <!-- السؤال 4 -->
         <div class="question">
           <h3>4) تقدمة هابيل كانت</h3>
-
-          <label>
-            <input type="radio" name="q4" value="أبكار غنم">
-            أبكار غنم
-          </label>
-
-          <label>
-            <input type="radio" name="q4" value="ثمار الأرض">
-            ثمار الأرض
-          </label>
-
-          <label>
-            <input type="radio" name="q4" value="غنم وثمار الأرض">
-            غنم وثمار الأرض
-          </label>
-
-          <label>
-            <input type="radio" name="q4" value="طيور وغنم">
-            طيور وغنم
-          </label>
+          <label><input type="radio" name="q4" value="أبكار غنم"> أبكار غنم</label>
+          <label><input type="radio" name="q4" value="ثمار الأرض"> ثمار الأرض</label>
+          <label><input type="radio" name="q4" value="غنم وثمار الأرض"> غنم وثمار الأرض</label>
+          <label><input type="radio" name="q4" value="طيور وغنم"> طيور وغنم</label>
         </div>
 
-
-        <!-- السؤال 5 -->
         <div class="question">
           <h3>5) فنادى الرب الإله........ أين أنت؟</h3>
-
-          <label>
-            <input type="radio" name="q5" value="آدم">
-            آدم
-          </label>
-
-          <label>
-            <input type="radio" name="q5" value="نوح">
-            نوح
-          </label>
-
-          <label>
-            <input type="radio" name="q5" value="قاين">
-            قاين
-          </label>
-
-          <label>
-            <input type="radio" name="q5" value="حواء">
-            حواء
-          </label>
+          <label><input type="radio" name="q5" value="آدم"> آدم</label>
+          <label><input type="radio" name="q5" value="نوح"> نوح</label>
+          <label><input type="radio" name="q5" value="قاين"> قاين</label>
+          <label><input type="radio" name="q5" value="حواء"> حواء</label>
         </div>
 
-
-        <!-- السؤال 6 -->
         <div class="question">
           <h3>6) لم يوجد لأن الله أخذه</h3>
-
-          <label>
-            <input type="radio" name="q6" value="نوح">
-            نوح
-          </label>
-
-          <label>
-            <input type="radio" name="q6" value="متوشالح">
-            متوشالح
-          </label>
-
-          <label>
-            <input type="radio" name="q6" value="لامك">
-            لامك
-          </label>
-
-          <label>
-            <input type="radio" name="q6" value="أخنوخ">
-            أخنوخ
-          </label>
+          <label><input type="radio" name="q6" value="نوح"> نوح</label>
+          <label><input type="radio" name="q6" value="متوشالح"> متوشالح</label>
+          <label><input type="radio" name="q6" value="لامك"> لامك</label>
+          <label><input type="radio" name="q6" value="أخنوخ"> أخنوخ</label>
         </div>
 
-
-        <!-- السؤال 7 -->
         <div class="question">
           <h3>7) أبعاد الفلك</h3>
-
-          <label>
-            <input
-              type="radio"
-              name="q7"
-              value="٣٠٠ ذراع طول و٥٠ ذراع عرض و٣٠ ذراع ارتفاع"
-            >
-            ٣٠٠ ذراع طول و٥٠ ذراع عرض و٣٠ ذراع ارتفاع
-          </label>
-
-          <label>
-            <input
-              type="radio"
-              name="q7"
-              value="٣٠ ذراع طول و٣٠٠ ذراع عرض و٥٠٠ ذراع ارتفاع"
-            >
-            ٣٠ ذراع طول و٣٠٠ ذراع عرض و٥٠٠ ذراع ارتفاع
-          </label>
-
-          <label>
-            <input
-              type="radio"
-              name="q7"
-              value="٥٠٠ ذراع ارتفاع و٥٠ ذراع عرض و٣٠ ذراع ارتفاع"
-            >
-            ٥٠٠ ذراع ارتفاع و٥٠ ذراع عرض و٣٠ ذراع ارتفاع
-          </label>
-
-          <label>
-            <input
-              type="radio"
-              name="q7"
-              value="٥٠ ذراع طول و٧٠ ذراع عرض و٣٠ ذراع ارتفاع"
-            >
-            ٥٠ ذراع طول و٧٠ ذراع عرض و٣٠ ذراع ارتفاع
-          </label>
+          <label><input type="radio" name="q7" value="٣٠٠ ذراع طول و٥٠ ذراع عرض و٣٠ ذراع ارتفاع"> ٣٠٠ ذراع طول و٥٠ ذراع عرض و٣٠ ذراع ارتفاع</label>
+          <label><input type="radio" name="q7" value="٣٠ ذراع طول و٣٠٠ ذراع عرض و٥٠٠ ذراع ارتفاع"> ٣٠ ذراع طول و٣٠٠ ذراع عرض و٥٠٠ ذراع ارتفاع</label>
+          <label><input type="radio" name="q7" value="٥٠٠ ذراع ارتفاع و٥٠ ذراع عرض و٣٠ ذراع ارتفاع"> ٥٠٠ ذراع ارتفاع و٥٠ ذراع عرض و٣٠ ذراع ارتفاع</label>
+          <label><input type="radio" name="q7" value="٥٠ ذراع طول و٧٠ ذراع عرض و٣٠ ذراع ارتفاع"> ٥٠ ذراع طول و٧٠ ذراع عرض و٣٠ ذراع ارتفاع</label>
         </div>
 
-
-        <!-- السؤال 8 -->
         <div class="question">
           <h3>8) أول رجل تزوج امرأتين</h3>
-
-          <label>
-            <input type="radio" name="q8" value="لامك">
-            لامك
-          </label>
-
-          <label>
-            <input type="radio" name="q8" value="قاين">
-            قاين
-          </label>
-
-          <label>
-            <input type="radio" name="q8" value="شيث">
-            شيث
-          </label>
-
-          <label>
-            <input type="radio" name="q8" value="نوح">
-            نوح
-          </label>
+          <label><input type="radio" name="q8" value="لامك"> لامك</label>
+          <label><input type="radio" name="q8" value="قاين"> قاين</label>
+          <label><input type="radio" name="q8" value="شيث"> شيث</label>
+          <label><input type="radio" name="q8" value="نوح"> نوح</label>
         </div>
 
-
-        <!-- السؤال 9 -->
         <div class="question">
           <h3>9) أولاد نوح</h3>
-
-          <label>
-            <input type="radio" name="q9" value="سام وكنعان وحام">
-            سام وكنعان وحام
-          </label>
-
-          <label>
-            <input type="radio" name="q9" value="سام وحام ويافث">
-            سام وحام ويافث
-          </label>
-
-          <label>
-            <input type="radio" name="q9" value="حام وأنوش ويافث">
-            حام وأنوش ويافث
-          </label>
-
-          <label>
-            <input type="radio" name="q9" value="سام وحام ولامك">
-            سام وحام ولامك
-          </label>
+          <label><input type="radio" name="q9" value="سام وكنعان وحام"> سام وكنعان وحام</label>
+          <label><input type="radio" name="q9" value="سام وحام ويافث"> سام وحام ويافث</label>
+          <label><input type="radio" name="q9" value="حام وأنوش ويافث"> حام وأنوش ويافث</label>
+          <label><input type="radio" name="q9" value="سام وحام ولامك"> سام وحام ولامك</label>
         </div>
 
-
-        <!-- السؤال 10 -->
         <div class="question">
           <h3>10) كم كان عمر نوح حين بدأ الطوفان؟</h3>
-
-          <label>
-            <input type="radio" name="q10" value="٥٠٠ سنة">
-            ٥٠٠ سنة
-          </label>
-
-          <label>
-            <input type="radio" name="q10" value="٦٠٠ سنة">
-            ٦٠٠ سنة
-          </label>
-
-          <label>
-            <input type="radio" name="q10" value="٩٠٠ سنة">
-            ٩٠٠ سنة
-          </label>
-
-          <label>
-            <input type="radio" name="q10" value="١٠٠٠ سنة">
-            ١٠٠٠ سنة
-          </label>
+          <label><input type="radio" name="q10" value="٥٠٠ سنة"> ٥٠٠ سنة</label>
+          <label><input type="radio" name="q10" value="٦٠٠ سنة"> ٦٠٠ سنة</label>
+          <label><input type="radio" name="q10" value="٩٠٠ سنة"> ٩٠٠ سنة</label>
+          <label><input type="radio" name="q10" value="١٠٠٠ سنة"> ١٠٠٠ سنة</label>
         </div>
 
-
-        <!-- زر الإرسال -->
-        <button type="submit" id="submitBtn">
-          إرسال الإجابات
-        </button>
-
+        <button type="submit" id="submitBtn">إرسال الإجابات</button>
       </form>
-
     </div>
 
-
-    <!-- النتيجة -->
     <div id="result">
-
-      <h2>🎉 النتيجة</h2>
-
-      <p id="scoreText"></p>
-
-      <p>
-        امسح الـ QR Code لتسجيل النتيجة والإجابات.
-      </p>
-
+      <h2>🎉 تم تسليم الاختبار</h2>
+      <p id="scoreText">تم تسليم الإجابة بنجاح Thanks🥰❤️</p>
+      <p>امسح الـ QR Code لتسجيل النتيجة والإجابات.</p>
       <div id="qrcode"></div>
-
       <p id="qrError"></p>
-
     </div>
-
   </div>
 
-
   <script>
-
-    // =========================
     // الإجابات الصحيحة
-    // =========================
-
     const correctAnswers = {
       q1: "أبناء الذين ولدوا من تزوج أبناء شيث مع بنات قاين",
       q2: "اليوم السابع",
@@ -560,325 +291,123 @@
       q10: "٩٠٠ سنة"
     };
 
-
-    // =========================
-    // رابط استقبال الـ QR
-    // =========================
-
     const scannerURL =
       "https://script.google.com/macros/s/AKfycbwfqwnUDieOCOScxoXWHzxrrALHOKxLIQvKvEx9W3poPdsxka1kVF8U3zVKXKbcIsM/exec";
 
-
-    // =========================
-    // عناصر الصفحة
-    // =========================
-
     const form = document.getElementById("quizForm");
-
-    const timerElement =
-      document.getElementById("timer");
-
-    const result =
-      document.getElementById("result");
-
-    const scoreText =
-      document.getElementById("scoreText");
-
-    const qrCodeElement =
-      document.getElementById("qrcode");
-
-    const qrError =
-      document.getElementById("qrError");
-
-    const submitBtn =
-      document.getElementById("submitBtn");
-
-    const quizArea =
-      document.getElementById("quizArea");
-
-
-    // =========================
-    // المؤقت - 10 دقائق
-    // =========================
+    const timerElement = document.getElementById("timer");
+    const result = document.getElementById("result");
+    const scoreText = document.getElementById("scoreText");
+    const qrCodeElement = document.getElementById("qrcode");
+    const qrError = document.getElementById("qrError");
+    const submitBtn = document.getElementById("submitBtn");
+    const quizArea = document.getElementById("quizArea");
 
     const TOTAL_TIME = 10 * 60 * 1000;
-
-    let endTime =
-      Date.now() + TOTAL_TIME;
-
+    let endTime = Date.now() + TOTAL_TIME;
     let submitted = false;
 
-
     function updateTimer() {
+      if (submitted) return;
 
-      if (submitted) {
-        return;
-      }
-
-      const remaining =
-        Math.max(0, endTime - Date.now());
-
-      const totalSeconds =
-        Math.floor(remaining / 1000);
-
-      const minutes =
-        Math.floor(totalSeconds / 60);
-
-      const seconds =
-        totalSeconds % 60;
-
+      const remaining = Math.max(0, endTime - Date.now());
+      const totalSeconds = Math.floor(remaining / 1000);
+      const minutes = Math.floor(totalSeconds / 60);
+      const seconds = totalSeconds % 60;
 
       timerElement.textContent =
-        String(minutes).padStart(2, "0") +
-        ":" +
+        String(minutes).padStart(2, "0") + ":" +
         String(seconds).padStart(2, "0");
 
-
       if (remaining <= 0) {
-
         timerElement.textContent = "00:00";
-
         submitQuiz(true);
       }
     }
 
-
     updateTimer();
+    const timerInterval = setInterval(updateTimer, 250);
 
-    const timerInterval =
-      setInterval(updateTimer, 250);
-
-
-    // =========================
-    // زر الإرسال
-    // =========================
-
-    form.addEventListener(
-      "submit",
-      function(event) {
-
-        event.preventDefault();
-
-        submitQuiz(false);
-
-      }
-    );
-
-
-    // =========================
-    // تسليم الاختبار
-    // =========================
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+      submitQuiz(false);
+    });
 
     function submitQuiz(autoSubmit) {
+      if (submitted) return;
 
-      if (submitted) {
-        return;
-      }
+      const name = document.getElementById("name").value.trim();
+      const service = document.getElementById("service").value.trim();
 
-
-      // في الإرسال اليدوي نتحقق من البيانات أولًا
       if (!autoSubmit) {
-
-        const name =
-          document.getElementById("name").value.trim();
-
-        const service =
-          document.getElementById("service").value.trim();
-
-
         if (!name) {
-
           alert("من فضلك اكتب اسمك أولًا.");
-
           return;
         }
-
 
         if (!service) {
-
           alert("من فضلك اكتب اسم الخدمة أولًا.");
-
           return;
         }
       }
 
-
       submitted = true;
-
       clearInterval(timerInterval);
-
       submitBtn.disabled = true;
-
-
-      const name =
-        document.getElementById("name").value.trim();
-
-      const service =
-        document.getElementById("service").value.trim();
-
-
-      // =========================
-      // حساب الدرجة
-      // =========================
-
-      let score = 0;
 
       const answers = {};
 
-
+      // نجمع الإجابات فقط؛ لا نضيف الدرجة إلى بيانات QR.
       for (let i = 1; i <= 10; i++) {
-
         const questionName = "q" + i;
-
-        const selected =
-          document.querySelector(
-            'input[name="' +
-            questionName +
-            '"]:checked'
-          );
-
-
-        if (selected) {
-
-          answers[questionName] =
-            selected.value;
-
-
-          if (
-            selected.value ===
-            correctAnswers[questionName]
-          ) {
-
-            score++;
-          }
-
-        } else {
-
-          answers[questionName] =
-            "لم يُجب";
-        }
-      }
-
-
-      // =========================
-      // إخفاء الاختبار
-      // =========================
-
-      quizArea.style.display = "none";
-
-      document.querySelector(".timer").style.display =
-        "none";
-
-
-      // =========================
-      // إظهار النتيجة
-      // =========================
-
-      result.style.display = "block";
-
-
-      scoreText.textContent =
-        "تم تسليم الاجابة بنجاح Thanks🥰❤️";
-
-
-      // =========================
-      // تجهيز بيانات QR
-      // =========================
-
-      let resultText = "";
-
-      resultText +=
-        "مسابقة درس الكتاب\n";
-
-      resultText +=
-        "الاسم: " +
-        (name || "لم يُكتب") +
-        "\n";
-
-      resultText +=
-        "الخدمة: " +
-        (service || "لم تُكتب") +
-        "\n";
-
-      resultText +=
-        "الدرجة: " +
-        score +
-        "/10\n";
-
-      resultText +=
-        "--------------------\n";
-
-
-      for (let i = 1; i <= 10; i++) {
-
-        resultText +=
-          "س" +
-          i +
-          ": " +
-          answers["q" + i] +
-          "\n";
-      }
-
-
-      // =========================
-      // إنشاء QR
-      // =========================
-
-      try {
-
-        if (
-          typeof qrcode === "undefined"
-        ) {
-
-          throw new Error(
-            "مكتبة QR Code غير موجودة"
-          );
-        }
-
-
-        qrcode.stringToBytes =
-          qrcode.stringToBytesFuncs["UTF-8"];
-
-
-        const qr =
-          qrcode(0, "M");
-
-
-        const qrData =
-          scannerURL +
-          "?data=" +
-          encodeURIComponent(resultText);
-
-
-        qr.addData(
-          qrData,
-          "Byte"
+        const selected = document.querySelector(
+          'input[name="' + questionName + '"]:checked'
         );
 
-
-        qr.make();
-
-
-        qrCodeElement.innerHTML =
-          qr.createSvgTag({
-            cellSize: 5,
-            margin: 4,
-            scalable: true
-          });
-
-
-      } catch (error) {
-
-        console.error(error);
-
-        qrError.textContent =
-          "حدث خطأ أثناء إنشاء QR Code.";
-
+        answers[questionName] = selected ? selected.value : "لم يُجب";
       }
 
+      quizArea.style.display = "none";
+      document.querySelector(".timer").style.display = "none";
+      result.style.display = "block";
+
+      // لا نعرض الدرجة للطالب.
+      scoreText.textContent = "تم تسليم الإجابة بنجاح Thanks🥰❤️";
+
+      // بيانات QR: الاسم والخدمة والإجابات فقط.
+      let resultText = "";
+      resultText += "مسابقة درس الكتاب\n";
+      resultText += "الاسم: " + (name || "لم يُكتب") + "\n";
+      resultText += "الخدمة: " + (service || "لم تُكتب") + "\n";
+      resultText += "--------------------\n";
+
+      for (let i = 1; i <= 10; i++) {
+        resultText += "س" + i + ": " + answers["q" + i] + "\n";
+      }
+
+      try {
+        if (typeof qrcode === "undefined") {
+          throw new Error("مكتبة QR Code غير موجودة");
+        }
+
+        qrcode.stringToBytes = qrcode.stringToBytesFuncs["UTF-8"];
+
+        const qr = qrcode(0, "M");
+        const qrData = scannerURL + "?data=" + encodeURIComponent(resultText);
+
+        qr.addData(qrData, "Byte");
+        qr.make();
+
+        qrCodeElement.innerHTML = qr.createSvgTag({
+          cellSize: 5,
+          margin: 4,
+          scalable: true
+        });
+      } catch (error) {
+        console.error(error);
+        qrError.textContent = "حدث خطأ أثناء إنشاء QR Code.";
+      }
     }
-
   </script>
-
 </body>
-  </html>
+</html>
